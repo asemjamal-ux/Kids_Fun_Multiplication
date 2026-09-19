@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.parents">Parents &amp; Teachers — Fun with Multiplication!</title>
+  <meta name="description" content="Tips for parents and teachers: a suggested learning order, memory tricks, a 10-minute daily routine and a progress tracker for the 1 to 10 times tables.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF6B6B'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E×%3C/text%3E%3C/svg%3E">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-badge">×</span> <span data-i18n="brand">Fun with Multiplication!</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">🏠 Home</a></li>
+        <li><a href="games.html" data-i18n="nav.games">🎮 Games</a></li>
+        <li><a href="videos.html" data-i18n="nav.videos">📺 Videos</a></li>
+        <li><a href="worksheets.html" data-i18n="nav.worksheets">📝 Worksheets</a></li>
+        <li><a href="parents.html" data-i18n="nav.parents">👩‍🏫 Parents &amp; Teachers</a></li>
+      </ul>
+      <button class="lang-toggle" type="button" data-lang-toggle title="العربية / English">عربي</button>
+      <button class="nav-toggle" aria-label="Open menu" data-i18n-label="nav.menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow" data-i18n="p.eyebrow">For grown-ups</span>
+          <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)" data-i18n="p.h1">Parents &amp; Teachers 👩‍🏫</h1>
+          <p class="lead" data-i18n="p.lead">How to get the most out of this site — in ten minutes a day, without tears.</p>
+        </div>
+      </div>
+
+      <!-- ================= PROGRESS ================= -->
+      <section class="sticker reveal" style="background:#fff; --d:.1s" id="progress">
+        <span class="tag" style="background:var(--sky); color:var(--ink)" data-i18n="p.saved">Saved on this device</span>
+        <h2 data-i18n="p.tracker">Progress tracker</h2>
+        <p class="lead" data-i18n="p.trackerLead">Everything your child plays on this browser is recorded here — no accounts, no sign-ups.</p>
+        <div class="progress-cards" style="margin-bottom:1.6rem">
+          <div class="stat"><b id="p-race">0</b><span data-i18n="p.raceBest">Race best</span></div>
+          <div class="stat"><b id="p-puzzle">0</b><span data-i18n="p.puzzleBest">Puzzle best</span></div>
+          <div class="stat"><b id="p-bingo">0</b><span data-i18n="p.bingoWins">Bingo wins</span></div>
+          <div class="stat"><b id="p-facts">0</b><span data-i18n="p.facts">Facts answered</span></div>
+          <div class="stat"><b id="p-acc">–</b><span data-i18n="p.acc">Accuracy</span></div>
+          <div class="stat"><b data-stars>⭐ 0</b><span data-i18n="stat.stars">stars</span></div>
+          <div class="stat"><b>🎁 <span data-prize-count>0</span></b><span data-i18n="prize.box">Prize box</span></div>
+        </div>
+        <h3 data-i18n="p.mastery">Mastery by table</h3>
+        <p style="color:var(--ink-soft)" data-i18n="p.legend">Green = 90%+ correct with at least 10 tries. Yellow = practising. Grey = not tried yet.</p>
+        <div class="mastery" id="mastery"></div>
+        <h3 style="margin-top:1.6rem" data-i18n="p.trouble">Facts that need work</h3>
+        <div class="chip-row" id="trouble"></div>
+        <p style="margin-top:1.2rem"><button class="btn btn-sm btn-white" id="p-reset" data-i18n="p.reset">Reset progress</button></p>
+      </section>
+
+      <!-- ================= TIPS ================= -->
+      <section style="margin-top:3.5rem">
+        <span class="eyebrow" data-i18n="p.tips.eyebrow">Tips</span>
+        <h2 data-i18n="p.tips.h2">Seven ways to use this site well</h2>
+        <ol class="tip-list">
+          <li><span class="num">1</span><div data-i18n-html="p.tip1"><b>Watch first, then play.</b> Start each new table with its <a href="videos.html" style="text-decoration:underline">video episode</a>. Children who can picture "3 groups of 4" rarely forget the answer.</div></li>
+          <li><span class="num">2</span><div data-i18n-html="p.tip2"><b>Little and often beats long and rare.</b> Ten minutes a day (one video or one game round) is far better than an hour on Sunday.</div></li>
+          <li><span class="num">3</span><div data-i18n-html="p.tip3"><b>One table at a time.</b> In the Race, untick everything except the table you are learning plus one you already know. Add more as confidence grows.</div></li>
+          <li><span class="num">4</span><div data-i18n-html="p.tip4"><b>Celebrate speed after accuracy.</b> The Race rewards fast answers, but only switch it on once your child is getting most answers right in the Puzzles.</div></li>
+          <li><span class="num">5</span><div data-i18n-html="p.tip5"><b>Say it out loud.</b> Turn on the Voice button in the video player and have your child repeat each line. Hearing, seeing and saying together builds strong memory.</div></li>
+          <li><span class="num">6</span><div data-i18n-html="p.tip6"><b>Use the tricks.</b> Every episode ends with a memory trick (doubling, the 9s finger trick, "just add a zero"). Ask your child to teach the trick back to you — teaching is the best test.</div></li>
+          <li><span class="num">7</span><div data-i18n-html="p.tip7"><b>Print for screen-free days.</b> A <a href="worksheets.html" style="text-decoration:underline">worksheet</a> at the kitchen table, timed with a kitchen timer, makes a great Friday challenge.</div></li>
+        </ol>
+      </section>
+
+      <!-- ================= ORDER ================= -->
+      <section style="margin-top:3.5rem">
+        <span class="eyebrow" data-i18n="p.order.eyebrow">Learning order</span>
+        <h2 data-i18n="p.order.h2">Which table should we learn next?</h2>
+        <p class="lead" data-i18n="p.order.lead">Don't go 1, 2, 3, 4… Go from easiest to hardest. Each step reuses what came before.</p>
+        <div class="order-steps">
+          <span class="order-step" style="background:#FFF3C4" data-i18n-html="p.step1">10 &amp; 1 <small>(add a zero / stays the same)</small></span><span class="order-arrow">→</span>
+          <span class="order-step" style="background:#FFE4E4" data-i18n-html="p.step2">2 &amp; 5 <small>(doubling, clock counting)</small></span><span class="order-arrow">→</span>
+          <span class="order-step" style="background:#E3F8F6" data-i18n-html="p.step3">4 <small>(double-double)</small></span><span class="order-arrow">→</span>
+          <span class="order-step" style="background:#EAF7E6" data-i18n-html="p.step4">3 &amp; 6 <small>(triple, and 3 doubled)</small></span><span class="order-arrow">→</span>
+          <span class="order-step" style="background:#F1E9FF" data-i18n-html="p.step5">9 <small>(finger trick)</small></span><span class="order-arrow">→</span>
+          <span class="order-step" style="background:#FFE9F2" data-i18n-html="p.step6">8 &amp; 7 <small>(only a few new facts left!)</small></span>
+        </div>
+        <p style="margin-top:1rem; color:var(--ink-soft)" data-i18n="p.order.note">Because 7 × 8 is the same as 8 × 7, by the time you reach the 7s there are only a handful of genuinely new facts to learn (7 × 7, 7 × 8, 8 × 8). Point this out — it's a huge confidence boost.</p>
+      </section>
+
+      <!-- ================= TRICKS ================= -->
+      <section style="margin-top:3.5rem">
+        <span class="eyebrow" data-i18n="p.tricks.eyebrow">Cheat sheet</span>
+        <h2 data-i18n="p.tricks.h2">Memory tricks for every table</h2>
+        <table class="tricks-table">
+          <thead><tr><th data-i18n="p.th.table">Table</th><th data-i18n="p.th.trick">Trick</th><th data-i18n="p.th.example">Example</th></tr></thead>
+          <tbody>
+            <tr><td>× 1</td><td data-i18n="p.trick1">The number stays the same.</td><td class="math">1 × 8 = 8</td></tr>
+            <tr><td>× 2</td><td data-i18n="p.trick2">Double it. All answers are even.</td><td class="math">2 × 7 = 7 + 7 = 14</td></tr>
+            <tr><td>× 3</td><td data-i18n="p.trick3">Double it, then add one more.</td><td class="math">3 × 6: 12 + 6 = 18</td></tr>
+            <tr><td>× 4</td><td data-i18n="p.trick4">Double, then double again.</td><td class="math">4 × 7: 14 → 28</td></tr>
+            <tr><td>× 5</td><td data-i18n="p.trick5">Ends in 5 or 0. Half of the ×10 answer.</td><td class="math">5 × 8 = 80 ÷ 2 = 40</td></tr>
+            <tr><td>× 6</td><td data-i18n="p.trick6">×5, then add one more group.</td><td class="math">6 × 7 = 35 + 7 = 42</td></tr>
+            <tr><td>× 7</td><td data-i18n="p.trick7">Rhymes: "5, 6, 7, 8 → 56 = 7 × 8". Only 7 × 7 and 7 × 8 are truly new by this stage.</td><td class="math">7 × 7 = 49</td></tr>
+            <tr><td>× 8</td><td data-i18n="p.trick8">Double, double, double.</td><td class="math">8 × 6: 12 → 24 → 48</td></tr>
+            <tr><td>× 9</td><td data-i18n="p.trick9">Finger trick: fold down finger N; tens on the left, ones on the right. Digits always add to 9.</td><td class="math">9 × 7 = 63 (6 + 3 = 9)</td></tr>
+            <tr><td>× 10</td><td data-i18n="p.trick10">Add a zero.</td><td class="math">10 × 9 = 90</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ================= ROUTINE ================= -->
+      <section style="margin-top:3.5rem" class="grid-2">
+        <div class="sticker tilt-l" style="background:#FFF3C4">
+          <h3 data-i18n="p.routine.h3">🕙 A 10-minute daily routine</h3>
+          <ul style="padding-inline-start:1.2rem; margin:0; line-height:1.8">
+            <li data-i18n-html="p.r1"><b>2 min</b> — Watch this week's episode (or replay it on Fast).</li>
+            <li data-i18n-html="p.r2"><b>3 min</b> — Math Puzzles until three hearts are gone.</li>
+            <li data-i18n-html="p.r3"><b>3 min</b> — One Times Table Race on this week's table.</li>
+            <li data-i18n-html="p.r4"><b>2 min</b> — Check the progress tracker together and pick one "fact that needs work" to say out loud five times.</li>
+          </ul>
+        </div>
+        <div class="sticker tilt-r" style="background:#E3F8F6">
+          <h3 data-i18n="p.class.h3">🏫 In the classroom</h3>
+          <ul style="padding-inline-start:1.2rem; margin:0; line-height:1.8">
+            <li data-i18n="p.c1">Project a video episode on the whiteboard and have the class chant the skip-count strip.</li>
+            <li data-i18n="p.c2">Bingo works brilliantly in pairs: one child reads the caller, the other finds the answer.</li>
+            <li data-i18n="p.c3">Print a class set of worksheets in one go — each "New sheet" click gives different problems, so neighbours can't copy.</li>
+            <li data-i18n="p.c4">The blank chart makes a good end-of-unit assessment; time it and file it.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= FAQ ================= -->
+      <section style="margin-top:3.5rem">
+        <span class="eyebrow" data-i18n="p.faq.eyebrow">FAQ</span>
+        <h2 data-i18n="p.faq.h2">Questions grown-ups ask</h2>
+        <details class="faq"><summary data-i18n="p.q1">Does the site collect any data or need an account?</summary><p style="margin:.6rem 0 0" data-i18n="p.a1">No. Scores and progress are saved only in this browser (localStorage). Clearing your browser data, or pressing "Reset progress" above, wipes it. Nothing is sent anywhere.</p></details>
+        <details class="faq"><summary data-i18n="p.q2">My child guesses quickly instead of thinking. What should I do?</summary><p style="margin:.6rem 0 0" data-i18n="p.a2">Switch from the Race to the Puzzles for a while — wrong answers cost a heart, which slows guessing down. Turning the sound on also helps: the "wrong" buzz is a gentle nudge.</p></details>
+        <details class="faq"><summary data-i18n="p.q3">What age is this for?</summary><p style="margin:.6rem 0 0" data-i18n="p.a3">Roughly 6 to 12. Younger children usually start with the 1, 2, 5 and 10 videos and Easy Bingo; older children go straight to the Race with the 6–9 preset.</p></details>
+        <details class="faq"><summary data-i18n="p.q4">Does it work on a phone or tablet?</summary><p style="margin:.6rem 0 0" data-i18n="p.a4">Yes — every page adapts to small screens, and all the games work with taps. The worksheet generator is best printed from a computer.</p></details>
+        <details class="faq"><summary data-i18n="p.q5">The voice narration doesn't work.</summary><p style="margin:.6rem 0 0" data-i18n="p.a5">Narration uses your browser's built-in speech (no downloads). It's supported in Chrome, Edge, Safari and Firefox on most devices; a few older browsers don't include voices.</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div data-i18n-html="footer.made"><b>Fun with Multiplication!</b> — made with ❤️ for curious kids aged 6–12.</div>
+      <div class="nums">1 2 3 4 5 6 7 8 9 10</div>
+      <div><a href="index.html" data-i18n="footer.back">Back to the fun</a></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      function paint() {
+        $('p-race').textContent = MM.load('race_best', 0);
+        $('p-puzzle').textContent = MM.load('puzzle_best', 0);
+        $('p-bingo').textContent = MM.load('bingo_wins', 0);
+        const facts = MM.load('facts', {});
+        let R = 0, W = 0;
+        const perTable = {};
+        for (let n = 1; n <= 10; n++) perTable[n] = { r: 0, w: 0 };
+        const trouble = [];
+        Object.entries(facts).forEach(([k, s]) => {
+          const [a, b] = k.split('x').map(Number);
+          R += s.r; W += s.w;
+          perTable[a].r += s.r; perTable[a].w += s.w;
+          if (a !== b) { perTable[b].r += s.r; perTable[b].w += s.w; }
+          if (s.w >= 2 && s.w >= s.r) trouble.push({ a, b, s });
+        });
+        $('p-facts').textContent = R + W;
+        $('p-acc').textContent = R + W ? Math.round(R / (R + W) * 100) + '%' : '–';
+        const m = $('mastery'); m.innerHTML = '';
+        for (let n = 1; n <= 10; n++) {
+          const t = perTable[n], total = t.r + t.w, acc = total ? Math.round(t.r / total * 100) : 0;
+          const d = document.createElement('div');
+          d.style.background = total === 0 ? '#eee' : (total >= 10 && acc >= 90) ? 'var(--lime)' : 'var(--sun)';
+          d.innerHTML = `<span class="math">× ${n}</span><small>${total ? MM.t('p.accOf', { acc, total }) : MM.t('p.notTried')}</small>`;
+          m.appendChild(d);
+        }
+        const tr = $('trouble'); tr.innerHTML = '';
+        trouble.sort((x, y) => (y.s.w - y.s.r) - (x.s.w - x.s.r)).slice(0, 12).forEach(f => {
+          const c = document.createElement('span'); c.className = 'chip math'; c.textContent = `${f.a} × ${f.b} = ${f.a * f.b}`; tr.appendChild(c);
+        });
+        if (!trouble.length) tr.innerHTML = `<span style="color:var(--ink-soft)">${MM.t('p.noTrouble')}</span>`;
+      }
+      $('p-reset').addEventListener('click', () => {
+        if (!confirm(MM.t('p.resetConfirm'))) return;
+        ['race_best', 'puzzle_best', 'bingo_wins', 'bingo_best_calls', 'memory_best', 'balloon_best', 'hunt_best', 'facts', 'qc_best', 'race_sessions', 'watched', 'stars'].forEach(k => MM.save(k, k === 'facts' || k === 'watched' ? {} : k === 'race_sessions' ? [] : 0));
+        MM.save('prizes', []); MM.stars = 0; MM.prizes = []; MM.paintStars();
+        paint();
+      });
+      paint();
+    })();
+  </script>
+</body>
+</html>

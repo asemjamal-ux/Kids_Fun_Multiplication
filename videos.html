@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.videos">Animated Videos — Fun with Multiplication!</title>
+  <meta name="description" content="Ten animated mini-episodes, one for every times table from 1 to 10, with a read-aloud narrator and memory tricks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF6B6B'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E×%3C/text%3E%3C/svg%3E">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-badge">×</span> <span data-i18n="brand">Fun with Multiplication!</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">🏠 Home</a></li>
+        <li><a href="games.html" data-i18n="nav.games">🎮 Games</a></li>
+        <li><a href="videos.html" data-i18n="nav.videos">📺 Videos</a></li>
+        <li><a href="worksheets.html" data-i18n="nav.worksheets">📝 Worksheets</a></li>
+        <li><a href="parents.html" data-i18n="nav.parents">👩‍🏫 Parents &amp; Teachers</a></li>
+      </ul>
+      <button class="lang-toggle" type="button" data-lang-toggle title="العربية / English">عربي</button>
+      <button class="nav-toggle" aria-label="Open menu" data-i18n-label="nav.menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow" data-i18n="videos.eyebrow">Multi's Multiplication Theatre</span>
+          <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)" data-i18n="videos.h1">Animated videos 📺</h1>
+          <p class="lead" data-i18n="videos.lead">Every table is a ten-scene mini-episode. Press play and watch the answer build up, group by group.</p>
+        </div>
+      </div>
+
+      <div class="player-layout reveal" style="--d:.1s" id="player-layout">
+        <div>
+          <div class="player">
+            <div class="player-stage" id="stage">
+              <span class="stage-title" id="stage-title">Episode 2 · The 2 Times Table</span>
+              <div class="stage-eq" id="stage-eq">2 × 1 = <span class="ans">2</span></div>
+              <div class="stage-rows" id="stage-rows"></div>
+              <div class="skip-strip" id="skip-strip"></div>
+              <div class="stage-caption" id="stage-caption" data-i18n="videos.press">Press ▶ to start!</div>
+            </div>
+            <div class="progress" id="progress" title="Jump to a scene" data-i18n-title="ctrl.jump"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+            <div class="player-controls">
+              <button class="btn btn-icon btn-white" id="btn-prev" title="Previous scene" data-i18n-title="ctrl.prev">⏮</button>
+              <button class="btn btn-icon btn-coral" id="btn-play" title="Play / pause" data-i18n-title="ctrl.play">▶</button>
+              <button class="btn btn-icon btn-white" id="btn-next" title="Next scene" data-i18n-title="ctrl.next">⏭</button>
+              <span style="font-family:var(--display); font-weight:600" id="scene-label">Scene 1 / 10</span>
+              <span class="spacer"></span>
+              <button class="btn btn-sm btn-white" id="btn-speed" title="Playback speed" data-i18n-title="ctrl.speed">🐢 Slow</button>
+              <button class="btn btn-sm btn-white" id="btn-voice" title="Read the captions out loud" data-i18n-title="ctrl.voice">🔈 Voice off</button>
+            </div>
+          </div>
+          <div class="trick-box" id="trick-box"><b data-i18n="trick.label">🧠 Memory trick:</b> <span id="trick-text"></span></div>
+        </div>
+
+        <aside>
+          <h3 style="margin-bottom:.8rem" data-i18n="episodes.h3">Episodes</h3>
+          <div class="episodes" id="episodes"></div>
+        </aside>
+      </div>
+
+      <!-- ================= CHART ================= -->
+      <section style="margin-top:4rem" id="chart">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="chart.eyebrow">Explore</span>
+            <h2 data-i18n="chart.h2">The big multiplication chart</h2>
+            <p class="lead" data-i18n="chart.lead">Hover or tap any square to light up its row and column.</p>
+          </div>
+        </div>
+        <div class="sticker" style="background:#fff; overflow-x:auto">
+          <table class="mchart" id="mchart"></table>
+          <div class="chart-readout" id="chart-readout" data-i18n="chart.readout">Tap a square! 👆</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div data-i18n-html="footer.made"><b>Fun with Multiplication!</b> — made with ❤️ for curious kids aged 6–12.</div>
+      <div class="nums">1 2 3 4 5 6 7 8 9 10</div>
+      <div><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/videos.js"></script>
+</body>
+</html>

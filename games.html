@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.games">Multiplication Games — Fun with Multiplication!</title>
+  <meta name="description" content="Six fun games to practise the 1 to 10 times tables: Times Table Race, Bingo, Math Puzzles, Memory Match, Balloon Pop and Number Hunt. Earn stars and sticker prizes!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF6B6B'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E×%3C/text%3E%3C/svg%3E">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-badge">×</span> <span data-i18n="brand">Fun with Multiplication!</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">🏠 Home</a></li>
+        <li><a href="games.html" data-i18n="nav.games">🎮 Games</a></li>
+        <li><a href="videos.html" data-i18n="nav.videos">📺 Videos</a></li>
+        <li><a href="worksheets.html" data-i18n="nav.worksheets">📝 Worksheets</a></li>
+        <li><a href="parents.html" data-i18n="nav.parents">👩‍🏫 Parents &amp; Teachers</a></li>
+      </ul>
+      <button class="lang-toggle" type="button" data-lang-toggle title="العربية / English">عربي</button>
+      <button class="nav-toggle" aria-label="Open menu" data-i18n-label="nav.menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="wrap">
+
+      <!-- ================= WHO'S PLAYING ================= -->
+      <section class="who reveal" id="who">
+        <div class="who-mascot" data-mascot="who-mascot-svg"></div>
+        <form class="who-ask" data-name-form id="who-ask">
+          <h2 data-i18n="who.h2">Who's playing?</h2>
+          <label for="who-name" class="field-label" data-i18n="name.q">What's your name?</label>
+          <div class="who-row">
+            <input type="text" id="who-name" maxlength="24" autocomplete="off" placeholder="Type your name" data-i18n-placeholder="name.ph">
+            <button class="btn btn-coral" type="submit" data-i18n="name.go">Let's go! 🚀</button>
+          </div>
+        </form>
+        <div class="who-hi" id="who-hi" hidden>
+          <h2 id="who-hi-title">Hi!</h2>
+          <div class="who-stats">
+            <span class="stat"><b data-stars>⭐ 0</b><span data-i18n="stat.stars">stars</span></span>
+            <span class="stat"><b>🎁 <span data-prize-count>0</span></b><span data-i18n="prize.box">Prize box</span></span>
+          </div>
+          <p class="who-next" data-stars-next></p>
+          <button class="btn btn-sm btn-white" type="button" data-name-change data-i18n="name.change">Change name</button>
+        </div>
+      </section>
+
+      <div class="section-head reveal" style="margin-top:2.5rem">
+        <div>
+          <span class="eyebrow" data-i18n="games.eyebrow">Game zone</span>
+          <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)" id="games-title" data-i18n="games.h1">Pick a game 🎮</h1>
+        </div>
+        <button class="btn btn-sm btn-white" data-sound-toggle>🔊 Sound on</button>
+      </div>
+
+      <div class="game-tabs reveal" style="--d:.1s" role="tablist">
+        <button class="game-tab" role="tab" aria-selected="true" data-game="race" data-i18n="games.tab.race">🚀 Times Table Race</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="bingo" data-i18n="games.tab.bingo">🎯 Multiplication Bingo</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="puzzle" data-i18n="games.tab.puzzle">🧩 Math Puzzles</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="memory" data-i18n="games.tab.memory">🃏 Memory Match</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="balloon" data-i18n="games.tab.balloon">🎈 Balloon Pop</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="hunt" data-i18n="games.tab.hunt">🔍 Number Hunt</button>
+      </div>
+
+      <!-- ================= RACE ================= -->
+      <section class="game-panel active sticker" id="game-race" style="background:#fff">
+        <div id="race-setup">
+          <h2 data-i18n="games.tab.race">🚀 Times Table Race</h2>
+          <p class="lead" data-i18n="race.lead">Answer as many as you can in 60 seconds. Fuel the rocket with correct answers!</p>
+          <p class="field-label" data-i18n="race.which">Which tables do you want to practise?</p>
+          <div class="chip-row" id="race-tables"></div>
+          <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin:.8rem 0 1.4rem">
+            <button class="btn btn-sm btn-white" data-preset="all" data-i18n="race.all">All tables</button>
+            <button class="btn btn-sm btn-white" data-preset="easy" data-i18n="race.easy">Easy (1, 2, 5, 10)</button>
+            <button class="btn btn-sm btn-white" data-preset="hard" data-i18n="race.hard">Hard (6, 7, 8, 9)</button>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap">
+            <button class="btn btn-coral btn-lg" id="race-start" data-i18n="race.start">Start the race! 🏁</button>
+            <span style="font-family:var(--display); font-weight:600"><span data-i18n="race.best">Best score:</span> <b id="race-best-label">0</b></span>
+          </div>
+        </div>
+        <div id="race-play" hidden>
+          <div class="stat-row">
+            <div class="stat"><b id="race-score">0</b><span data-i18n="stat.score">score</span></div>
+            <div class="stat"><b id="race-time">60</b><span data-i18n="stat.seconds">seconds</span></div>
+            <div class="stat"><b id="race-streak">0</b><span data-i18n="stat.streak">streak</span></div>
+          </div>
+          <div class="timer-bar"><div class="timer-fill" id="race-timer" style="width:100%"></div></div>
+          <div class="track"><div class="track-fill" id="race-fill" style="width:0%"></div><div class="track-rocket" id="race-rocket" style="left:0%">🚀</div></div>
+          <div class="question-big" id="race-q"></div>
+          <div class="options" id="race-opts"></div>
+          <p style="text-align:center; margin-top:1rem"><button class="btn btn-sm btn-white" id="race-quit" data-i18n="btn.stop">Stop</button></p>
+        </div>
+      </section>
+
+      <!-- ================= BINGO ================= -->
+      <section class="game-panel sticker" id="game-bingo" style="background:#fff">
+        <div id="bingo-setup">
+          <h2 data-i18n="games.tab.bingo">🎯 Multiplication Bingo</h2>
+          <p class="lead" data-i18n="bingo.lead">Multi calls out a question. Find the answer on your card and tap it. Get five in a row to win!</p>
+          <p class="field-label" data-i18n="bingo.level">Choose your level</p>
+          <div class="chip-row" id="bingo-level">
+            <button class="chip" aria-pressed="true" data-level="easy" data-i18n="bingo.easy">🌱 Easy — tables 1 to 5</button>
+            <button class="chip" aria-pressed="false" data-level="mixed" data-i18n="bingo.mixed">🌼 Mixed — tables 1 to 10</button>
+            <button class="chip" aria-pressed="false" data-level="hard" data-i18n="bingo.hard">🔥 Hard — tables 6 to 10</button>
+          </div>
+          <p style="margin-top:1rem"><button class="btn btn-grape btn-lg" id="bingo-start" data-i18n="bingo.start">Deal my card! 🃏</button></p>
+        </div>
+        <div id="bingo-play" hidden>
+          <div class="caller" id="bingo-caller">6 × 7</div>
+          <div class="bingo-grid" id="bingo-grid"></div>
+          <div class="stat-row">
+            <div class="stat"><b id="bingo-calls">0</b><span data-i18n="stat.calls">calls</span></div>
+            <div class="stat"><b id="bingo-marked">0</b><span data-i18n="stat.marked">marked</span></div>
+          </div>
+          <div style="display:flex; justify-content:center; gap:.8rem; flex-wrap:wrap">
+            <button class="btn btn-white" id="bingo-nope" data-i18n="bingo.nope">🙅 Not on my card</button>
+            <button class="btn btn-sm btn-white" id="bingo-quit" data-i18n="bingo.new">New card</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PUZZLES ================= -->
+      <section class="game-panel sticker" id="game-puzzle" style="background:#fff">
+        <div id="puzzle-setup">
+          <h2 data-i18n="games.tab.puzzle">🧩 Math Puzzles</h2>
+          <p class="lead" data-i18n="puzzle.lead">Missing numbers, true-or-false, and odd-one-out. You have three hearts — how far can you get?</p>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap">
+            <button class="btn btn-sky btn-lg" id="puzzle-start" data-i18n="puzzle.start">Start puzzling! 🧠</button>
+            <span style="font-family:var(--display); font-weight:600"><span data-i18n="puzzle.best">Best:</span> <b id="puzzle-best-label">0</b> <span data-i18n="puzzle.unit">puzzles</span></span>
+          </div>
+        </div>
+        <div id="puzzle-play" hidden>
+          <div class="stat-row">
+            <div class="stat"><b id="puzzle-score">0</b><span data-i18n="stat.solved">solved</span></div>
+            <div class="stat"><b class="hearts" id="puzzle-hearts">❤️❤️❤️</b><span data-i18n="stat.lives">lives</span></div>
+          </div>
+          <div style="text-align:center"><span class="puzzle-type" id="puzzle-type">Missing number</span></div>
+          <div class="question-big" id="puzzle-q"></div>
+          <div class="options" id="puzzle-opts"></div>
+          <p style="text-align:center; margin-top:1rem"><button class="btn btn-sm btn-white" id="puzzle-quit" data-i18n="btn.stop">Stop</button></p>
+        </div>
+      </section>
+
+      <!-- ================= MEMORY MATCH ================= -->
+      <section class="game-panel sticker" id="game-memory" style="background:#fff">
+        <div id="memory-setup">
+          <h2 data-i18n="games.tab.memory">🃏 Memory Match</h2>
+          <p class="lead" data-i18n="memory.lead">Flip two cards. Match each question with its answer!</p>
+          <p class="field-label" data-i18n="bingo.level">Choose your level</p>
+          <div class="chip-row" id="memory-level">
+            <button class="chip" aria-pressed="true" data-level="easy" data-i18n="bingo.easy">🌱 Easy — tables 1 to 5</button>
+            <button class="chip" aria-pressed="false" data-level="mixed" data-i18n="bingo.mixed">🌼 Mixed — tables 1 to 10</button>
+            <button class="chip" aria-pressed="false" data-level="hard" data-i18n="bingo.hard">🔥 Hard — tables 6 to 10</button>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-top:1rem">
+            <button class="btn btn-lime btn-lg" id="memory-start" data-i18n="memory.start">Shuffle &amp; play! 🃏</button>
+            <span style="font-family:var(--display); font-weight:600" id="memory-best-label"></span>
+          </div>
+        </div>
+        <div id="memory-play" hidden>
+          <div class="stat-row">
+            <div class="stat"><b id="memory-moves">0</b><span data-i18n="stat.moves">moves</span></div>
+            <div class="stat"><b id="memory-pairs">0 / 8</b><span data-i18n="stat.pairs">pairs</span></div>
+          </div>
+          <div class="memory-grid" id="memory-grid"></div>
+          <p style="text-align:center; margin-top:1rem"><button class="btn btn-sm btn-white" id="memory-quit" data-i18n="btn.stop">Stop</button></p>
+        </div>
+      </section>
+
+      <!-- ================= BALLOON POP ================= -->
+      <section class="game-panel sticker" id="game-balloon" style="background:#fff">
+        <div id="balloon-setup">
+          <h2 data-i18n="games.tab.balloon">🎈 Balloon Pop</h2>
+          <p class="lead" data-i18n="balloon.lead">Pop the balloon with the right answer before it floats away! Three misses and the game ends.</p>
+          <p class="field-label" data-i18n="race.which">Which tables do you want to practise?</p>
+          <div class="chip-row" id="balloon-tables"></div>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-top:1rem">
+            <button class="btn btn-coral btn-lg" id="balloon-start" data-i18n="balloon.start">Start popping! 🎈</button>
+            <span style="font-family:var(--display); font-weight:600"><span data-i18n="race.best">Best score:</span> <b id="balloon-best-label">0</b></span>
+          </div>
+        </div>
+        <div id="balloon-play" hidden>
+          <div class="stat-row">
+            <div class="stat"><b id="balloon-score">0</b><span data-i18n="stat.popped">popped</span></div>
+            <div class="stat"><b class="hearts" id="balloon-hearts">❤️❤️❤️</b><span data-i18n="stat.lives">lives</span></div>
+          </div>
+          <div class="question-big" id="balloon-q" style="padding:.4rem"></div>
+          <div class="arena" id="balloon-arena"></div>
+          <p style="text-align:center; margin-top:1rem"><button class="btn btn-sm btn-white" id="balloon-quit" data-i18n="btn.stop">Stop</button></p>
+        </div>
+      </section>
+
+      <!-- ================= NUMBER HUNT ================= -->
+      <section class="game-panel sticker" id="game-hunt" style="background:#fff">
+        <div id="hunt-setup">
+          <h2 data-i18n="games.tab.hunt">🔍 Number Hunt</h2>
+          <p class="lead" data-i18n="hunt.lead">Find every tile that equals the target number. Tap them all before the time runs out!</p>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap">
+            <button class="btn btn-grape btn-lg" id="hunt-start" data-i18n="hunt.start">Start the hunt! 🔍</button>
+            <span style="font-family:var(--display); font-weight:600"><span data-i18n="race.best">Best score:</span> <b id="hunt-best-label">0</b></span>
+          </div>
+        </div>
+        <div id="hunt-play" hidden>
+          <div class="stat-row">
+            <div class="stat"><b id="hunt-round">1</b><span data-i18n="stat.round">round</span></div>
+            <div class="stat"><b id="hunt-found">0</b><span data-i18n="stat.found">found</span></div>
+            <div class="stat"><b id="hunt-time">20</b><span data-i18n="stat.seconds">seconds</span></div>
+          </div>
+          <div class="timer-bar"><div class="timer-fill" id="hunt-timer" style="width:100%"></div></div>
+          <div class="hunt-target"><span data-i18n="hunt.target">Find everything that makes</span> <b class="math" id="hunt-target">24</b></div>
+          <div class="hunt-grid" id="hunt-grid"></div>
+          <p style="text-align:center; margin-top:1rem"><button class="btn btn-sm btn-white" id="hunt-quit" data-i18n="btn.stop">Stop</button></p>
+        </div>
+      </section>
+
+      <!-- ================= PRIZE BOX ================= -->
+      <section class="sticker reveal" id="prizes" style="margin-top:3rem; background:#FFF3C4; --d:.2s">
+        <span class="tag" data-stars>⭐ 0</span>
+        <h2 data-i18n="prizes.h2">🎁 Prize box</h2>
+        <p class="lead" data-i18n="prizes.lead">Every correct answer = a star ⭐. Every 10 stars = a new sticker!</p>
+        <p style="font-family:var(--display); font-weight:600" data-stars-next></p>
+        <div class="prize-box" data-prize-box></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Result modal -->
+  <div class="modal-back" id="modal">
+    <div class="modal">
+      <div class="big-emoji" id="modal-emoji">🎉</div>
+      <h2 id="modal-title">Great job!</h2>
+      <p id="modal-body" style="font-size:1.15rem"></p>
+      <div style="display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap">
+        <button class="btn btn-coral" id="modal-again" data-i18n="modal.again">Play again</button>
+        <button class="btn btn-white" id="modal-close" data-i18n="modal.close">Back to games</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div data-i18n-html="footer.made"><b>Fun with Multiplication!</b> — made with ❤️ for curious kids aged 6–12.</div>
+      <div class="nums">1 2 3 4 5 6 7 8 9 10</div>
+      <div><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/games-more.js"></script>
+</body>
+</html>
