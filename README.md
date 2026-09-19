@@ -27,9 +27,17 @@ Then visit <http://localhost:5173>.
 ## Stars & prizes
 
 Every correct answer anywhere on the site (games, quick challenge) earns one star via `MM.recordFact()`.
-Every 10 stars unlocks the next sticker from `MM.STICKERS` (24 in total) and shows a celebration popup
-addressed to the child by name. The name, stars and prizes are stored in `localStorage` (`mm_name`,
-`mm_stars`, `mm_prizes`). The star chip in the nav links to the prize box on the games page.
+
+- **Stickers** — every 10 stars unlocks the next of 36 stickers in `MM.STICKERS`.
+- **Trophies** — 16 achievement prizes in `MM.BADGES`, each with a `check(stats, event)` rule, e.g. win a
+  Bingo, finish Memory Match in ≤12 moves, score 20+ in the Race. Eight are marked `hard` and require real
+  mastery of the 6–9 tables: `MM.MASTERY_TRIES` (15) answers on that table at `MM.MASTERY_ACC` (90 %)
+  accuracy, computed from the per-fact stats. The prize box shows progress toward each locked trophy.
+  Games report what happened via `MM.checkBadges({ raceScore, raceTables, bingoWin, memoryMoves, … })`.
+
+Each unlock shows a celebration popup addressed to the child by name (queued if several arrive at once).
+The name, stars, stickers and trophies are stored in `localStorage` (`mm_name`, `mm_stars`, `mm_prizes`,
+`mm_badges`). The star chip in the nav links to the prize box on the games page.
 
 ## Languages
 

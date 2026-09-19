@@ -21,7 +21,7 @@
     if (correct) s.r++; else s.w++;
     stats[k] = s;
     MM.save('facts', stats);
-    if (correct) MM.addStar();
+    if (correct) { MM.addStar(); MM.checkBadges(); }
   };
 
   /* ---------- Player name ---------- */
@@ -35,16 +35,18 @@
   /* ---------- Stars & prizes ----------
      1 correct answer = 1 star. Every STARS_PER_PRIZE stars unlocks the next sticker. */
   MM.STARS_PER_PRIZE = 10;
-  MM.STICKERS = ['🦄', '🚀', '🐉', '🍦', '🦖', '🌈', '🏆', '🦋', '🐬', '🎸', '🧁', '🐼', '🛸', '👑', '🦊', '🎠', '🐢', '🍕', '🦁', '🎆', '🐙', '🍭', '🦕', '💎'];
+  MM.STICKERS = ['🦄', '🚀', '🐉', '🍦', '🦖', '🌈', '🏆', '🦋', '🐬', '🎸', '🧁', '🐼', '🛸', '👑', '🦊', '🎠', '🐢', '🍕', '🦁', '🎆', '🐙', '🍭', '🦕', '💎',
+    '🐳', '🌋', '🦩', '🎪', '🍉', '🐨', '🚁', '🧜', '🦚', '🍓', '🌙', '🦈'];
   MM.stars = MM.load('stars', 0);
   MM.prizes = MM.load('prizes', []);
   MM.stickerName = (i) => MM.t('sticker.' + (i % MM.STICKERS.length));
   MM.starsToNext = () => MM.STARS_PER_PRIZE - (MM.stars % MM.STARS_PER_PRIZE);
   MM.paintStars = function () {
     document.querySelectorAll('[data-stars]').forEach(el => { el.textContent = '⭐ ' + MM.stars; });
-    document.querySelectorAll('[data-prize-count]').forEach(el => { el.textContent = MM.prizes.length; });
+    document.querySelectorAll('[data-prize-count]').forEach(el => { el.textContent = MM.prizes.length + MM.badges.length; });
     document.querySelectorAll('[data-stars-next]').forEach(el => { el.textContent = MM.t('name.next', { n: MM.starsToNext() }); });
     if (typeof MM.paintPrizeBox === 'function') MM.paintPrizeBox();
+    if (typeof MM.paintBadgeBox === 'function') MM.paintBadgeBox();
   };
   MM.addStar = function () {
     MM.stars++; MM.save('stars', MM.stars);
@@ -55,23 +57,117 @@
     }
     MM.paintStars();
   };
-  MM.showPrize = function (idx) {
-    const emoji = MM.STICKERS[idx % MM.STICKERS.length];
+  /* showPrize(stickerIndex) or showPrize({ kind: 'badge', emoji, name }) */
+  MM.showPrize = function (what) {
+    const badge = typeof what === 'object';
+    const emoji = badge ? what.emoji : MM.STICKERS[what % MM.STICKERS.length];
+    const name = badge ? what.name : MM.stickerName(what);
+    const title = badge
+      ? (MM.name ? MM.t('badge.title', { name: MM.name }) : MM.t('badge.titleAnon'))
+      : (MM.name ? MM.t('prize.title', { name: MM.name }) : MM.t('prize.titleAnon'));
+    const body = badge ? MM.t('badge.body', { badge: '<b>' + name + '</b>' }) : MM.t('prize.body', { sticker: '<b>' + name + '</b>' });
     const back = document.createElement('div');
     back.className = 'prize-back';
     back.innerHTML = `
-      <div class="prize-card">
+      <div class="prize-card ${badge ? 'badge' : ''}">
         <div class="prize-rays"></div>
         <div class="prize-emoji">${emoji}</div>
-        <h2>${MM.name ? MM.t('prize.title', { name: MM.name }) : MM.t('prize.titleAnon')}</h2>
-        <p>${MM.t('prize.body', { sticker: '<b>' + MM.stickerName(idx) + '</b>' })}</p>
+        <h2>${title}</h2>
+        <p>${body}</p>
         <button class="btn btn-coral btn-lg">${MM.t('prize.btn')}</button>
       </div>`;
-    back.querySelector('button').addEventListener('click', () => back.remove());
+    // Show one celebration at a time: queue if another popup is open
+    if (document.querySelector('.prize-back')) { MM.prizeQueue.push(back); return; }
+    MM.openPrize(back);
+  };
+  MM.prizeQueue = [];
+  MM.openPrize = function (back) {
+    back.querySelector('button').addEventListener('click', () => {
+      back.remove();
+      const next = MM.prizeQueue.shift();
+      if (next) setTimeout(() => MM.openPrize(next), 250);
+    });
     document.body.appendChild(back);
     MM.confetti(140);
     setTimeout(() => MM.sound.win(), 50);
   };
+  /* ---------- Trophies (achievement prizes) ----------
+     Unlocked by doing something, not by star count. The `hard` ones need real mastery of the
+     6–9 tables: at least MASTERY_TRIES answers on that table with MASTERY_ACC accuracy. */
+  MM.MASTERY_TRIES = 15; MM.MASTERY_ACC = .9;
+  MM.tableStats = function () {
+    const facts = MM.load('facts', {});
+    const per = {}; for (let n = 1; n <= 10; n++) per[n] = { r: 0, w: 0 };
+    Object.entries(facts).forEach(([k, s]) => {
+      const [a, b] = k.split('x').map(Number);
+      if (per[a]) { per[a].r += s.r; per[a].w += s.w; }
+      if (per[b] && a !== b) { per[b].r += s.r; per[b].w += s.w; }
+    });
+    const acc = (n) => { const t = per[n], tot = t.r + t.w; return tot ? t.r / tot : 0; };
+    const tries = (n) => per[n].r + per[n].w;
+    return { per, acc, tries, mastered: (n) => tries(n) >= MM.MASTERY_TRIES && acc(n) >= MM.MASTERY_ACC };
+  };
+  const tableProgress = (n) => (s) => `${Math.round(s.acc(n) * 100)}% · ${Math.min(s.tries(n), MM.MASTERY_TRIES)}/${MM.MASTERY_TRIES}`;
+  const ALL = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  MM.BADGES = [
+    { id: 'bingo',     emoji: '🎯', check: (s, e) => e.bingoWin },
+    { id: 'memory',    emoji: '🧠', check: (s, e) => e.memoryMoves > 0 && e.memoryMoves <= 12 },
+    { id: 'racer',     emoji: '🚀', check: (s, e) => e.raceScore >= 20 },
+    { id: 'popstar',   emoji: '🎈', check: (s, e) => e.balloonScore >= 15 },
+    { id: 'eyes',      emoji: '🔍', check: (s, e) => e.huntRounds >= 5 },
+    { id: 'century',   emoji: '💯', check: () => MM.stars >= 100, progress: () => `${Math.min(MM.stars, 100)}/100 ⭐` },
+    { id: 'little',    emoji: '🌟', check: (s) => [1, 2, 3, 4, 5].every(s.mastered), progress: (s) => `${[1, 2, 3, 4, 5].filter(s.mastered).length}/5` },
+    { id: 't6',        emoji: '🐝', hard: true, check: (s) => s.mastered(6), progress: tableProgress(6) },
+    { id: 't7',        emoji: '🌈', hard: true, check: (s) => s.mastered(7), progress: tableProgress(7) },
+    { id: 't8',        emoji: '🐙', hard: true, check: (s) => s.mastered(8), progress: tableProgress(8) },
+    { id: 't9',        emoji: '🥷', hard: true, check: (s) => s.mastered(9), progress: tableProgress(9) },
+    { id: 'hardracer', emoji: '🔥', hard: true, check: (s, e) => e.raceScore >= 15 && Array.isArray(e.raceTables) && e.raceTables.length > 0 && e.raceTables.every(n => n >= 6 && n <= 9) },
+    { id: 'hardpop',   emoji: '🌶️', hard: true, check: (s, e) => e.balloonScore >= 10 && Array.isArray(e.balloonTables) && e.balloonTables.length > 0 && e.balloonTables.every(n => n >= 6 && n <= 9) },
+    { id: 'hero',      emoji: '🦸', hard: true, check: (s) => [6, 7, 8, 9].every(s.mastered), progress: (s) => `${[6, 7, 8, 9].filter(s.mastered).length}/4` },
+    { id: 'royalty',   emoji: '👑', hard: true, check: (s) => ALL.every(s.mastered), progress: (s) => `${ALL.filter(s.mastered).length}/10` },
+    { id: 'genius',    emoji: '🎓', check: () => MM.stars >= 500, progress: () => `${Math.min(MM.stars, 500)}/500 ⭐` }
+  ];
+  MM.badges = MM.load('badges', []);
+  MM.badgeName = (b) => MM.t('badge.' + b.id);
+  /* Call with an event describing what just happened, e.g. { raceScore: 22, raceTables: [6,7,8,9] }.
+     Table-mastery trophies need no event; recordFact() calls this with none. */
+  MM.checkBadges = function (e) {
+    e = e || {};
+    const s = MM.tableStats();
+    const newly = [];
+    MM.BADGES.forEach(b => {
+      if (MM.badges.includes(b.id)) return;
+      let ok = false; try { ok = !!b.check(s, e); } catch (err) { ok = false; }
+      if (ok) { MM.badges.push(b.id); newly.push(b); }
+    });
+    if (!newly.length) return;
+    MM.save('badges', MM.badges);
+    newly.forEach((b, i) => setTimeout(() => MM.showPrize({ kind: 'badge', emoji: b.emoji, name: MM.badgeName(b) }), 600 + i * 500));
+    MM.paintStars();
+  };
+  /* Renders every [data-badge-box]: earned trophies bright; locked ones show what to do and progress. */
+  MM.paintBadgeBox = function () {
+    const boxes = document.querySelectorAll('[data-badge-box]');
+    if (!boxes.length) return;
+    const s = MM.tableStats();
+    boxes.forEach(box => {
+      box.innerHTML = '';
+      MM.BADGES.forEach(b => {
+        const earned = MM.badges.includes(b.id);
+        const d = document.createElement('div');
+        d.className = 'badge-slot' + (earned ? ' earned' : ' locked') + (b.hard ? ' hard' : '');
+        let prog = ''; if (!earned && b.progress) { try { prog = b.progress(s); } catch (err) { prog = ''; } }
+        d.innerHTML = `
+          ${b.hard ? `<span class="badge-hard">${MM.t('prizes.hard')}</span>` : ''}
+          <span class="badge-emoji">${earned ? b.emoji : '🔒'}</span>
+          <b>${MM.badgeName(b)}</b>
+          <small>${MM.t('badge.' + b.id + '.how')}</small>
+          ${prog ? `<span class="badge-progress math">${prog}</span>` : ''}`;
+        box.appendChild(d);
+      });
+    });
+  };
+
   /* Renders every [data-prize-box] as a sticker grid: earned ones bright, the rest locked. */
   MM.paintPrizeBox = function () {
     document.querySelectorAll('[data-prize-box]').forEach(box => {

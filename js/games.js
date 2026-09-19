@@ -108,6 +108,7 @@
     const stars = race.score >= 25 ? '⭐⭐⭐' : race.score >= 15 ? '⭐⭐' : race.score >= 6 ? '⭐' : '';
     const sessions = MM.load('race_sessions', []); sessions.push({ d: Date.now(), s: race.score, acc }); MM.save('race_sessions', sessions.slice(-30));
     if (race.score > 0) { MM.sound.win(); MM.confetti(newBest ? 120 : 50); }
+    MM.checkBadges({ raceScore: race.score, raceTables: [...race.tables] });
     openModal(newBest ? '🏆' : '🚀', MM.t(newBest ? 'race.title.best' : 'race.title.over'),
       MM.t('race.body', { s: race.score, acc, stars, tail: newBest ? MM.t('race.beat') : MM.t('race.bestSoFar', { b: Math.max(best, race.score) }) }), raceStart);
   }
@@ -194,6 +195,7 @@
     const wins = MM.load('bingo_wins', 0) + 1; MM.save('bingo_wins', wins);
     const bestCalls = MM.load('bingo_best_calls', 0);
     if (!bestCalls || bingo.calls < bestCalls) MM.save('bingo_best_calls', bingo.calls);
+    MM.checkBadges({ bingoWin: true });
     setTimeout(() => openModal('🎯', MM.t('bingo.win.title'), MM.t('bingo.win.body', { c: bingo.calls, w: wins }), bingoStart), 700);
   }
   $('bingo-nope').addEventListener('click', () => {

@@ -195,7 +195,7 @@
       $('p-reset').addEventListener('click', () => {
         if (!confirm(MM.t('p.resetConfirm'))) return;
         ['race_best', 'puzzle_best', 'bingo_wins', 'bingo_best_calls', 'memory_best', 'balloon_best', 'hunt_best', 'facts', 'qc_best', 'race_sessions', 'watched', 'stars'].forEach(k => MM.save(k, k === 'facts' || k === 'watched' ? {} : k === 'race_sessions' ? [] : 0));
-        MM.save('prizes', []); MM.stars = 0; MM.prizes = []; MM.paintStars();
+        MM.save('prizes', []); MM.save('badges', []); MM.stars = 0; MM.prizes = []; MM.badges = []; MM.paintStars();
         paint();
       });
       paint();

@@ -543,3 +543,26 @@ details.faq summary { font-family: var(--display); font-weight: 600; font-size: 
 .hunt-tile.hit { background: var(--lime); transform: rotate(-3deg) scale(.96); animation: pop .35s; }
 .hunt-tile.miss { background: var(--coral); color: #fff; animation: shake .4s; }
 @media (max-width: 480px) { .hunt-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------- Trophies ---------- */
+.badge-box { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .9rem; margin-top: 1rem; }
+.badge-slot {
+  position: relative; display: grid; grid-template-columns: 56px 1fr; grid-template-rows: auto auto; gap: .1rem .8rem; align-items: center;
+  border: 3px solid var(--ink); border-radius: 18px; background: #fff; box-shadow: var(--shadow-sm); padding: .9rem 1rem .9rem .9rem;
+  font-family: var(--display); transition: transform .15s;
+}
+.badge-slot .badge-emoji { grid-row: 1 / 3; font-size: 2.4rem; line-height: 1; width: 56px; height: 56px; display: grid; place-items: center; border-radius: 14px; border: 2px solid var(--ink); background: #FFF3C4; }
+.badge-slot b { font-size: 1rem; line-height: 1.2; }
+.badge-slot small { font-family: var(--body); font-weight: 600; font-size: .78rem; line-height: 1.3; color: var(--ink-soft); }
+.badge-slot .badge-progress { grid-column: 2; font-size: .78rem; font-weight: 700; background: var(--ink); color: var(--sun); border-radius: 999px; padding: .05rem .6rem; justify-self: start; margin-top: .25rem; }
+.badge-slot.locked { opacity: .7; background: #FAF7F2; }
+.badge-slot.locked .badge-emoji { background: #eee; filter: grayscale(1); }
+.badge-slot.earned { background: linear-gradient(160deg, #fff 0%, #FFF3C4 100%); }
+.badge-slot.earned:hover { transform: translate(-2px, -2px) rotate(-1.5deg); }
+.badge-slot.hard { border-color: #E4572E; }
+.badge-slot.earned.hard { background: linear-gradient(160deg, #fff 0%, #FFE4DA 100%); }
+.badge-hard {
+  position: absolute; top: -12px; inset-inline-end: 12px; font-size: .7rem; font-weight: 700; letter-spacing: 0;
+  background: #E4572E; color: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: .05rem .55rem; box-shadow: 2px 2px 0 var(--ink);
+}
+.prize-card.badge .prize-rays { background: repeating-conic-gradient(from 0deg, #FFD0C2 0deg 12deg, #FFF0EA 12deg 24deg); }

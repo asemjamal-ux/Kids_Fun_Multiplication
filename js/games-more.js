@@ -106,6 +106,7 @@
     if (newBest) MM.save('memory_best', memory.moves);
     paintMemoryBest();
     MM.sound.win(); MM.confetti(newBest ? 120 : 60);
+    MM.checkBadges({ memoryMoves: memory.moves });
     setTimeout(() => {
       $('memory-setup').hidden = false; $('memory-play').hidden = true;
       openModal(newBest ? '🏆' : '🃏', MM.t('memory.win.title'),
@@ -190,6 +191,7 @@
     const best = MM.load('balloon_best', 0), newBest = balloon.score > best;
     if (newBest) { MM.save('balloon_best', balloon.score); $('balloon-best-label').textContent = balloon.score; }
     if (balloon.score > 0) { MM.sound.win(); MM.confetti(newBest ? 100 : 40); }
+    MM.checkBadges({ balloonScore: balloon.score, balloonTables: [...balloon.tables] });
     openModal(newBest ? '🏆' : '🎈', MM.t(newBest ? 'generic.beat' : 'balloon.over'),
       MM.t('balloon.body', { s: balloon.score, word: MM.t(balloon.score === 1 ? 'balloon.one' : 'balloon.many'), tail: newBest ? '' : MM.t('generic.best', { b: Math.max(best, balloon.score) }) }), balloonStart);
   }
@@ -268,6 +270,7 @@
     const best = MM.load('hunt_best', 0), newBest = hunt.found > best;
     if (newBest) { MM.save('hunt_best', hunt.found); $('hunt-best-label').textContent = hunt.found; }
     if (hunt.found > 0) { MM.sound.win(); MM.confetti(newBest ? 100 : 40); }
+    MM.checkBadges({ huntRounds: Math.max(0, hunt.round - 1) });
     openModal(newBest ? '🏆' : '🔍', MM.t(newBest ? 'generic.beat' : 'hunt.over'),
       MM.t('hunt.body', { r: Math.max(0, hunt.round - 1), f: hunt.found, tail: newBest ? '' : MM.t('generic.best', { b: Math.max(best, hunt.found) }) }), huntStart);
   }
