@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title.videos">Animated Videos — Fun with Multiplication!</title>
-  <meta name="description" content="Ten animated mini-episodes, one for every times table from 1 to 10, with a read-aloud narrator and memory tricks.">
+  <title data-i18n="title.videos">Animated Videos — Fun with Division!</title>
+  <meta name="description" content="Ten animated mini-episodes, one for dividing by each number from 1 to 10, showing treats shared into equal groups, with a read-aloud narrator and memory tricks.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF6B6B'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E×%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ECDC4'/%3E%3Ctext x='50' y='74' font-size='70' text-anchor='middle' fill='%232B2140' font-family='sans-serif' font-weight='bold'%3E÷%3C/text%3E%3C/svg%3E">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#FF6B6B">
+  <meta name="theme-color" content="#4ECDC4">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,14 +23,14 @@
 
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-badge">×</span> <span data-i18n="brand">Fun with Multiplication!</span></a>
+      <a class="brand" href="index.html"><span class="brand-badge">÷</span> <span data-i18n="brand">Fun with Division!</span></a>
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav.home">🏠 Home</a></li>
         <li><a href="games.html" data-i18n="nav.games">🎮 Games</a></li>
         <li><a href="videos.html" data-i18n="nav.videos">📺 Videos</a></li>
         <li><a href="worksheets.html" data-i18n="nav.worksheets">📝 Worksheets</a></li>
         <li><a href="parents.html" data-i18n="nav.parents">👩‍🏫 Parents &amp; Teachers</a></li>
-        <li><a class="sister-link" data-sister href="division/index.html" data-i18n="nav.sister">➗ Division</a></li>
+        <li><a class="sister-link" data-sister href="../index.html" data-i18n="nav.sister">✖️ Multiplication</a></li>
       </ul>
       <button class="lang-toggle" type="button" data-lang-toggle title="العربية / English">عربي</button>
       <button class="nav-toggle" aria-label="Open menu" data-i18n-label="nav.menu" aria-expanded="false">☰</button>
@@ -41,9 +41,9 @@
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow" data-i18n="videos.eyebrow">Multi's Multiplication Theatre</span>
+          <span class="eyebrow" data-i18n="videos.eyebrow">Divi's Sharing Theatre</span>
           <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)" data-i18n="videos.h1">Animated videos 📺</h1>
-          <p class="lead" data-i18n="videos.lead">Every table is a ten-scene mini-episode. Press play and watch the answer build up, group by group.</p>
+          <p class="lead" data-i18n="videos.lead">Every number is a ten-scene mini-episode. Press play and watch the treats get dealt into equal groups, one at a time.</p>
         </div>
       </div>
 
@@ -51,8 +51,8 @@
         <div>
           <div class="player">
             <div class="player-stage" id="stage">
-              <span class="stage-title" id="stage-title">Episode 2 · The 2 Times Table</span>
-              <div class="stage-eq" id="stage-eq">2 × 1 = <span class="ans">2</span></div>
+              <span class="stage-title" id="stage-title">Episode 2 · Dividing by 2</span>
+              <div class="stage-eq" id="stage-eq">2 ÷ 2 = <span class="ans">1</span></div>
               <div class="stage-rows" id="stage-rows"></div>
               <div class="skip-strip" id="skip-strip"></div>
               <div class="stage-caption" id="stage-caption" data-i18n="videos.press">Press ▶ to start!</div>
@@ -82,8 +82,8 @@
         <div class="section-head">
           <div>
             <span class="eyebrow" data-i18n="chart.eyebrow">Explore</span>
-            <h2 data-i18n="chart.h2">The big multiplication chart</h2>
-            <p class="lead" data-i18n="chart.lead">Hover or tap any square to light up its row and column.</p>
+            <h2 data-i18n="chart.h2">The division finder chart</h2>
+            <p class="lead" data-i18n="chart.lead">Every number in the chart hides two divisions. Hover or tap any square to see them.</p>
           </div>
         </div>
         <div class="sticker" style="background:#fff; overflow-x:auto">
@@ -96,9 +96,9 @@
 
   <footer class="footer">
     <div class="wrap footer-inner">
-      <div data-i18n-html="footer.made"><b>Fun with Multiplication!</b> — made with ❤️ for curious kids aged 6–12.</div>
-      <div class="nums">1 2 3 4 5 6 7 8 9 10</div>
-      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="division/index.html" data-i18n="footer.sister">➗ Fun with Division</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
+      <div data-i18n-html="footer.made"><b>Fun with Division!</b> — made with ❤️ for curious kids aged 6–12.</div>
+      <div class="nums">÷ 1 2 3 4 5 6 7 8 9 10</div>
+      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="../index.html" data-i18n="footer.sister">✖️ Fun with Multiplication</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
     </div>
   </footer>
 

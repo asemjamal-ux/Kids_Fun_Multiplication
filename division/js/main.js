@@ -1,23 +1,24 @@
-/* Shared helpers: nav, mascot art, confetti, storage, sounds. */
+/* Shared helpers for Fun with Division: nav, mascot art, confetti, storage, sounds, prizes.
+   Kept close to the Fun with Multiplication version; storage uses its own 'dv_' prefix. */
 (function () {
   'use strict';
 
   window.MM = window.MM || {};
-  MM.SISTER_URL = 'division/index.html';
+  MM.SISTER_URL = '../index.html';
 
   /* ---------- Storage (safe wrappers) ---------- */
   MM.load = function (key, fallback) {
-    try { const v = localStorage.getItem('mm_' + key); return v === null ? fallback : JSON.parse(v); }
+    try { const v = localStorage.getItem('dv_' + key); return v === null ? fallback : JSON.parse(v); }
     catch (e) { return fallback; }
   };
   MM.save = function (key, value) {
-    try { localStorage.setItem('mm_' + key, JSON.stringify(value)); } catch (e) { /* private mode etc. */ }
+    try { localStorage.setItem('dv_' + key, JSON.stringify(value)); } catch (e) { /* private mode etc. */ }
   };
-  /* Record one answered fact so the parents page can show mastery per table.
-     Every correct answer also earns a star (see the prize system below). */
-  MM.recordFact = function (a, b, correct) {
+  /* Record one answered division fact (n × q) ÷ n = q, keyed "dividend/divisor",
+     so the parents page can show mastery per divisor. Every correct answer earns a star. */
+  MM.recordFact = function (n, q, correct) {
     const stats = MM.load('facts', {});
-    const k = a + 'x' + b;
+    const k = (n * q) + '/' + n;
     const s = stats[k] || { r: 0, w: 0 };
     if (correct) s.r++; else s.w++;
     stats[k] = s;
@@ -36,8 +37,9 @@
   /* ---------- Stars & prizes ----------
      1 correct answer = 1 star. Every STARS_PER_PRIZE stars unlocks the next sticker. */
   MM.STARS_PER_PRIZE = 10;
-  MM.STICKERS = ['🦄', '🚀', '🐉', '🍦', '🦖', '🌈', '🏆', '🦋', '🐬', '🎸', '🧁', '🐼', '🛸', '👑', '🦊', '🎠', '🐢', '🍕', '🦁', '🎆', '🐙', '🍭', '🦕', '💎',
-    '🐳', '🌋', '🦩', '🎪', '🍉', '🐨', '🚁', '🧜', '🦚', '🍓', '🌙', '🦈'];
+  // A different collection from the multiplication site, so there is something new to collect
+  MM.STICKERS = ['🐧', '🦉', '🐯', '🦓', '🦒', '🐘', '🦔', '🦦', '🐞', '🦜', '🐿️', '🦘', '🐰', '🐻', '🐹', '🦥', '🦭', '🐝',
+    '🍩', '🍪', '🧇', '🥨', '🍒', '🥝', '🍍', '🥑', '🌮', '🍿', '⚽', '🎨', '🪁', '🎹', '🛼', '🚂', '⛵', '🪐'];
   MM.stars = MM.load('stars', 0);
   MM.prizes = MM.load('prizes', []);
   MM.stickerName = (i) => MM.t('sticker.' + (i % MM.STICKERS.length));
@@ -93,16 +95,15 @@
     setTimeout(() => MM.sound.win(), 50);
   };
   /* ---------- Trophies (achievement prizes) ----------
-     Unlocked by doing something, not by star count. The `hard` ones need real mastery of the
-     6–9 tables: at least MASTERY_TRIES answers on that table with MASTERY_ACC accuracy. */
+     Unlocked by doing something, not by star count. The `hard` ones need real mastery of dividing
+     by 6–9: at least MASTERY_TRIES answers with that divisor at MASTERY_ACC accuracy. */
   MM.MASTERY_TRIES = 15; MM.MASTERY_ACC = .9;
   MM.tableStats = function () {
     const facts = MM.load('facts', {});
     const per = {}; for (let n = 1; n <= 10; n++) per[n] = { r: 0, w: 0 };
     Object.entries(facts).forEach(([k, s]) => {
-      const [a, b] = k.split('x').map(Number);
-      if (per[a]) { per[a].r += s.r; per[a].w += s.w; }
-      if (per[b] && a !== b) { per[b].r += s.r; per[b].w += s.w; }
+      const n = Number(k.split('/')[1]);
+      if (per[n]) { per[n].r += s.r; per[n].w += s.w; }
     });
     const acc = (n) => { const t = per[n], tot = t.r + t.w; return tot ? t.r / tot : 0; };
     const tries = (n) => per[n].r + per[n].w;
@@ -116,10 +117,11 @@
     { id: 'racer',     emoji: '🚀', check: (s, e) => e.raceScore >= 20 },
     { id: 'popstar',   emoji: '🎈', check: (s, e) => e.balloonScore >= 15 },
     { id: 'eyes',      emoji: '🔍', check: (s, e) => e.huntRounds >= 5 },
+    { id: 'sharer',    emoji: '🍪', check: (s, e) => e.shareScore === 10 },
     { id: 'century',   emoji: '💯', check: () => MM.stars >= 100, progress: () => `${Math.min(MM.stars, 100)}/100 ⭐` },
     { id: 'little',    emoji: '🌟', check: (s) => [1, 2, 3, 4, 5].every(s.mastered), progress: (s) => `${[1, 2, 3, 4, 5].filter(s.mastered).length}/5` },
-    { id: 't6',        emoji: '🐝', hard: true, check: (s) => s.mastered(6), progress: tableProgress(6) },
-    { id: 't7',        emoji: '🌈', hard: true, check: (s) => s.mastered(7), progress: tableProgress(7) },
+    { id: 't6',        emoji: '🍕', hard: true, check: (s) => s.mastered(6), progress: tableProgress(6) },
+    { id: 't7',        emoji: '🍀', hard: true, check: (s) => s.mastered(7), progress: tableProgress(7) },
     { id: 't8',        emoji: '🐙', hard: true, check: (s) => s.mastered(8), progress: tableProgress(8) },
     { id: 't9',        emoji: '🥷', hard: true, check: (s) => s.mastered(9), progress: tableProgress(9) },
     { id: 'hardracer', emoji: '🔥', hard: true, check: (s, e) => e.raceScore >= 15 && Array.isArray(e.raceTables) && e.raceTables.length > 0 && e.raceTables.every(n => n >= 6 && n <= 9) },
@@ -193,14 +195,21 @@
     for (let i = a.length - 1; i > 0; i--) { const j = MM.rand(i + 1); [a[i], a[j]] = [a[j], a[i]]; }
     return a;
   };
-  /* Build 3 plausible wrong answers around the right one. */
-  MM.distractors = function (a, b) {
-    const right = a * b;
+  /* A random fact from the chosen divisors: { n: divisor, q: quotient, p: dividend }. */
+  MM.divFact = function (tables) {
+    const list = tables && tables.length ? tables : [2, 3, 4, 5];
+    const n = MM.pick(list), q = 1 + MM.rand(10);
+    return { n, q, p: n * q };
+  };
+  MM.divText = (f) => `${f.p} ÷ ${f.n}`;
+  /* Three plausible wrong quotients for p ÷ n = q, including the classic slips
+     (answering with the divisor, or being one group off). */
+  MM.divDistractors = function (n, q) {
     const set = new Set();
-    const cands = [a * (b + 1), a * (b - 1), (a + 1) * b, (a - 1) * b, right + a, right - a, right + 1, right - 1, right + 10, right - 10, a + b];
-    MM.shuffle(cands).forEach(v => { if (set.size < 3 && v > 0 && v !== right && v <= 120) set.add(v); });
-    while (set.size < 3) { const v = right + MM.rand(9) - 4; if (v > 0 && v !== right) set.add(v); }
-    return MM.shuffle([right, ...set]);
+    const cands = [q + 1, q - 1, q + 2, q - 2, q + 3, n, q * 2, n + q];
+    MM.shuffle(cands).forEach(v => { if (set.size < 3 && v > 0 && v !== q && v <= 20) set.add(v); });
+    while (set.size < 3) { const v = 1 + MM.rand(12); if (v !== q) set.add(v); }
+    return MM.shuffle([q, ...set]);
   };
 
   /* ---------- Confetti ---------- */
@@ -240,23 +249,23 @@
     tick() { if (!this.enabled) return; tone(1200, .04, 'square', 0); }
   };
 
-  /* ---------- Mascot ("Multi") ---------- */
+  /* ---------- Mascot ("Divi") ---------- */
   MM.mascotSVG = function (extraClass) {
     return `
-<svg class="mascot ${extraClass || ''}" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Multi, the friendly multiplication monster">
+<svg class="mascot ${extraClass || ''}" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Divi, the friendly division monster">
   <defs>
     <linearGradient id="mBody" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#B08CFF"/><stop offset="1" stop-color="#7E4FE8"/>
+      <stop offset="0" stop-color="#7FE3DA"/><stop offset="1" stop-color="#1FA89E"/>
     </linearGradient>
   </defs>
   <!-- antenna -->
   <path d="M110 46 C 112 30, 118 22, 128 16" fill="none" stroke="#2B2140" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="130" cy="14" r="9" fill="#FFD23F" stroke="#2B2140" stroke-width="5"/>
+  <circle cx="130" cy="14" r="9" fill="#FF6B6B" stroke="#2B2140" stroke-width="5"/>
   <!-- body -->
   <path d="M110 40 C 165 40, 192 80, 190 125 C 188 175, 155 200, 110 200 C 65 200, 32 175, 30 125 C 28 80, 55 40, 110 40 Z" fill="url(#mBody)" stroke="#2B2140" stroke-width="6"/>
   <!-- tummy patch -->
   <ellipse cx="110" cy="150" rx="42" ry="30" fill="#FFF3C4" stroke="#2B2140" stroke-width="4"/>
-  <text x="110" y="162" text-anchor="middle" font-family="Fredoka, Comic Sans MS, sans-serif" font-weight="700" font-size="34" fill="#2B2140">×</text>
+  <text x="110" y="162" text-anchor="middle" font-family="Fredoka, Comic Sans MS, sans-serif" font-weight="700" font-size="38" fill="#2B2140">÷</text>
   <!-- eyes -->
   <ellipse cx="86" cy="96" rx="18" ry="20" fill="#fff" stroke="#2B2140" stroke-width="5"/>
   <ellipse cx="134" cy="96" rx="18" ry="20" fill="#fff" stroke="#2B2140" stroke-width="5"/>

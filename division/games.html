@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title.games">Multiplication Games — Fun with Multiplication!</title>
-  <meta name="description" content="Six fun games to practise the 1 to 10 times tables: Times Table Race, Bingo, Math Puzzles, Memory Match, Balloon Pop and Number Hunt. Earn stars and sticker prizes!">
+  <title data-i18n="title.games">Division Games — Fun with Division!</title>
+  <meta name="description" content="Seven fun games to practise dividing by 1 to 10: Fair Share, Division Race, Bingo, Puzzles, Memory Match, Balloon Pop and Number Hunt. Earn stars and sticker prizes!">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF6B6B'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E×%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ECDC4'/%3E%3Ctext x='50' y='74' font-size='70' text-anchor='middle' fill='%232B2140' font-family='sans-serif' font-weight='bold'%3E÷%3C/text%3E%3C/svg%3E">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#FF6B6B">
+  <meta name="theme-color" content="#4ECDC4">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,14 +23,14 @@
 
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-badge">×</span> <span data-i18n="brand">Fun with Multiplication!</span></a>
+      <a class="brand" href="index.html"><span class="brand-badge">÷</span> <span data-i18n="brand">Fun with Division!</span></a>
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav.home">🏠 Home</a></li>
         <li><a href="games.html" data-i18n="nav.games">🎮 Games</a></li>
         <li><a href="videos.html" data-i18n="nav.videos">📺 Videos</a></li>
         <li><a href="worksheets.html" data-i18n="nav.worksheets">📝 Worksheets</a></li>
         <li><a href="parents.html" data-i18n="nav.parents">👩‍🏫 Parents &amp; Teachers</a></li>
-        <li><a class="sister-link" data-sister href="division/index.html" data-i18n="nav.sister">➗ Division</a></li>
+        <li><a class="sister-link" data-sister href="../index.html" data-i18n="nav.sister">✖️ Multiplication</a></li>
       </ul>
       <button class="lang-toggle" type="button" data-lang-toggle title="العربية / English">عربي</button>
       <button class="nav-toggle" aria-label="Open menu" data-i18n-label="nav.menu" aria-expanded="false">☰</button>
@@ -71,25 +71,50 @@
       </div>
 
       <div class="game-tabs reveal" style="--d:.1s" role="tablist">
-        <button class="game-tab" role="tab" aria-selected="true" data-game="race" data-i18n="games.tab.race">🚀 Times Table Race</button>
-        <button class="game-tab" role="tab" aria-selected="false" data-game="bingo" data-i18n="games.tab.bingo">🎯 Multiplication Bingo</button>
-        <button class="game-tab" role="tab" aria-selected="false" data-game="puzzle" data-i18n="games.tab.puzzle">🧩 Math Puzzles</button>
+        <button class="game-tab" role="tab" aria-selected="true" data-game="share" data-i18n="games.tab.share">🍪 Fair Share</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="race" data-i18n="games.tab.race">🚀 Division Race</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="bingo" data-i18n="games.tab.bingo">🎯 Division Bingo</button>
+        <button class="game-tab" role="tab" aria-selected="false" data-game="puzzle" data-i18n="games.tab.puzzle">🧩 Division Puzzles</button>
         <button class="game-tab" role="tab" aria-selected="false" data-game="memory" data-i18n="games.tab.memory">🃏 Memory Match</button>
         <button class="game-tab" role="tab" aria-selected="false" data-game="balloon" data-i18n="games.tab.balloon">🎈 Balloon Pop</button>
         <button class="game-tab" role="tab" aria-selected="false" data-game="hunt" data-i18n="games.tab.hunt">🔍 Number Hunt</button>
       </div>
 
+      <!-- ================= FAIR SHARE ================= -->
+      <section class="game-panel active sticker" id="game-share" style="background:#fff">
+        <div id="share-setup">
+          <h2 data-i18n="games.tab.share">🍪 Fair Share</h2>
+          <p class="lead" data-i18n="share.lead">Share the treats fairly between friends! How many does each friend get? Ten rounds — can you get them all?</p>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap">
+            <button class="btn btn-coral btn-lg" id="share-start" data-i18n="share.start">Start sharing! 🍪</button>
+            <span style="font-family:var(--display); font-weight:600"><span data-i18n="race.best">Best score:</span> <b id="share-best-label">0</b> / 10</span>
+          </div>
+        </div>
+        <div id="share-play" hidden>
+          <div class="stat-row">
+            <div class="stat"><b id="share-round">1 / 10</b><span data-i18n="stat.round">round</span></div>
+            <div class="stat"><b id="share-score">0</b><span data-i18n="stat.correct">correct</span></div>
+          </div>
+          <p class="share-q" id="share-q"></p>
+          <div class="share-pile" id="share-pile"></div>
+          <div class="share-friends" id="share-friends"></div>
+          <p class="share-msg" id="share-msg"></p>
+          <div class="options" id="share-opts"></div>
+          <p style="text-align:center; margin-top:1rem"><button class="btn btn-sm btn-white" id="share-quit" data-i18n="btn.stop">Stop</button></p>
+        </div>
+      </section>
+
       <!-- ================= RACE ================= -->
-      <section class="game-panel active sticker" id="game-race" style="background:#fff">
+      <section class="game-panel sticker" id="game-race" style="background:#fff">
         <div id="race-setup">
-          <h2 data-i18n="games.tab.race">🚀 Times Table Race</h2>
+          <h2 data-i18n="games.tab.race">🚀 Division Race</h2>
           <p class="lead" data-i18n="race.lead">Answer as many as you can in 60 seconds. Fuel the rocket with correct answers!</p>
-          <p class="field-label" data-i18n="race.which">Which tables do you want to practise?</p>
+          <p class="field-label" data-i18n="race.which">Which numbers do you want to divide by?</p>
           <div class="chip-row" id="race-tables"></div>
           <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin:.8rem 0 1.4rem">
-            <button class="btn btn-sm btn-white" data-preset="all" data-i18n="race.all">All tables</button>
-            <button class="btn btn-sm btn-white" data-preset="easy" data-i18n="race.easy">Easy (1, 2, 5, 10)</button>
-            <button class="btn btn-sm btn-white" data-preset="hard" data-i18n="race.hard">Hard (6, 7, 8, 9)</button>
+            <button class="btn btn-sm btn-white" data-preset="all" data-i18n="race.all">All numbers</button>
+            <button class="btn btn-sm btn-white" data-preset="easy" data-i18n="race.easy">Easy (÷1, ÷2, ÷5, ÷10)</button>
+            <button class="btn btn-sm btn-white" data-preset="hard" data-i18n="race.hard">Hard (÷6, ÷7, ÷8, ÷9)</button>
           </div>
           <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap">
             <button class="btn btn-coral btn-lg" id="race-start" data-i18n="race.start">Start the race! 🏁</button>
@@ -113,18 +138,18 @@
       <!-- ================= BINGO ================= -->
       <section class="game-panel sticker" id="game-bingo" style="background:#fff">
         <div id="bingo-setup">
-          <h2 data-i18n="games.tab.bingo">🎯 Multiplication Bingo</h2>
-          <p class="lead" data-i18n="bingo.lead">Multi calls out a question. Find the answer on your card and tap it. Get five in a row to win!</p>
+          <h2 data-i18n="games.tab.bingo">🎯 Division Bingo</h2>
+          <p class="lead" data-i18n="bingo.lead">Divi calls out a division. Find the answer on your card and tap it — any square with that number counts! Five in a row wins.</p>
           <p class="field-label" data-i18n="bingo.level">Choose your level</p>
           <div class="chip-row" id="bingo-level">
-            <button class="chip" aria-pressed="true" data-level="easy" data-i18n="bingo.easy">🌱 Easy — tables 1 to 5</button>
-            <button class="chip" aria-pressed="false" data-level="mixed" data-i18n="bingo.mixed">🌼 Mixed — tables 1 to 10</button>
-            <button class="chip" aria-pressed="false" data-level="hard" data-i18n="bingo.hard">🔥 Hard — tables 6 to 10</button>
+            <button class="chip" aria-pressed="true" data-level="easy" data-i18n="bingo.easy">🌱 Easy — divide by 1 to 5</button>
+            <button class="chip" aria-pressed="false" data-level="mixed" data-i18n="bingo.mixed">🌼 Mixed — divide by 1 to 10</button>
+            <button class="chip" aria-pressed="false" data-level="hard" data-i18n="bingo.hard">🔥 Hard — divide by 6 to 10</button>
           </div>
           <p style="margin-top:1rem"><button class="btn btn-grape btn-lg" id="bingo-start" data-i18n="bingo.start">Deal my card! 🃏</button></p>
         </div>
         <div id="bingo-play" hidden>
-          <div class="caller" id="bingo-caller">6 × 7</div>
+          <div class="caller" id="bingo-caller">42 ÷ 6</div>
           <div class="bingo-grid" id="bingo-grid"></div>
           <div class="stat-row">
             <div class="stat"><b id="bingo-calls">0</b><span data-i18n="stat.calls">calls</span></div>
@@ -140,8 +165,8 @@
       <!-- ================= PUZZLES ================= -->
       <section class="game-panel sticker" id="game-puzzle" style="background:#fff">
         <div id="puzzle-setup">
-          <h2 data-i18n="games.tab.puzzle">🧩 Math Puzzles</h2>
-          <p class="lead" data-i18n="puzzle.lead">Missing numbers, true-or-false, and odd-one-out. You have three hearts — how far can you get?</p>
+          <h2 data-i18n="games.tab.puzzle">🧩 Division Puzzles</h2>
+          <p class="lead" data-i18n="puzzle.lead">Missing numbers, true-or-false, fact families and odd-one-out. You have three hearts — how far can you get?</p>
           <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap">
             <button class="btn btn-sky btn-lg" id="puzzle-start" data-i18n="puzzle.start">Start puzzling! 🧠</button>
             <span style="font-family:var(--display); font-weight:600"><span data-i18n="puzzle.best">Best:</span> <b id="puzzle-best-label">0</b> <span data-i18n="puzzle.unit">puzzles</span></span>
@@ -163,12 +188,12 @@
       <section class="game-panel sticker" id="game-memory" style="background:#fff">
         <div id="memory-setup">
           <h2 data-i18n="games.tab.memory">🃏 Memory Match</h2>
-          <p class="lead" data-i18n="memory.lead">Flip two cards. Match each question with its answer!</p>
+          <p class="lead" data-i18n="memory.lead">Flip two cards. Match each division with its answer!</p>
           <p class="field-label" data-i18n="bingo.level">Choose your level</p>
           <div class="chip-row" id="memory-level">
-            <button class="chip" aria-pressed="true" data-level="easy" data-i18n="bingo.easy">🌱 Easy — tables 1 to 5</button>
-            <button class="chip" aria-pressed="false" data-level="mixed" data-i18n="bingo.mixed">🌼 Mixed — tables 1 to 10</button>
-            <button class="chip" aria-pressed="false" data-level="hard" data-i18n="bingo.hard">🔥 Hard — tables 6 to 10</button>
+            <button class="chip" aria-pressed="true" data-level="easy" data-i18n="bingo.easy">🌱 Easy — divide by 1 to 5</button>
+            <button class="chip" aria-pressed="false" data-level="mixed" data-i18n="bingo.mixed">🌼 Mixed — divide by 1 to 10</button>
+            <button class="chip" aria-pressed="false" data-level="hard" data-i18n="bingo.hard">🔥 Hard — divide by 6 to 10</button>
           </div>
           <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-top:1rem">
             <button class="btn btn-lime btn-lg" id="memory-start" data-i18n="memory.start">Shuffle &amp; play! 🃏</button>
@@ -190,7 +215,7 @@
         <div id="balloon-setup">
           <h2 data-i18n="games.tab.balloon">🎈 Balloon Pop</h2>
           <p class="lead" data-i18n="balloon.lead">Pop the balloon with the right answer before it floats away! Three misses and the game ends.</p>
-          <p class="field-label" data-i18n="race.which">Which tables do you want to practise?</p>
+          <p class="field-label" data-i18n="race.which">Which numbers do you want to divide by?</p>
           <div class="chip-row" id="balloon-tables"></div>
           <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-top:1rem">
             <button class="btn btn-coral btn-lg" id="balloon-start" data-i18n="balloon.start">Start popping! 🎈</button>
@@ -212,7 +237,7 @@
       <section class="game-panel sticker" id="game-hunt" style="background:#fff">
         <div id="hunt-setup">
           <h2 data-i18n="games.tab.hunt">🔍 Number Hunt</h2>
-          <p class="lead" data-i18n="hunt.lead">Find every tile that equals the target number. Tap them all before the time runs out!</p>
+          <p class="lead" data-i18n="hunt.lead">Find every division whose answer is the target number. Tap them all before the time runs out!</p>
           <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap">
             <button class="btn btn-grape btn-lg" id="hunt-start" data-i18n="hunt.start">Start the hunt! 🔍</button>
             <span style="font-family:var(--display); font-weight:600"><span data-i18n="race.best">Best score:</span> <b id="hunt-best-label">0</b></span>
@@ -225,14 +250,14 @@
             <div class="stat"><b id="hunt-time">20</b><span data-i18n="stat.seconds">seconds</span></div>
           </div>
           <div class="timer-bar"><div class="timer-fill" id="hunt-timer" style="width:100%"></div></div>
-          <div class="hunt-target"><span data-i18n="hunt.target">Find everything that makes</span> <b class="math" id="hunt-target">24</b></div>
+          <div class="hunt-target"><span data-i18n="hunt.target">Find every division that equals</span> <b class="math" id="hunt-target">6</b></div>
           <div class="hunt-grid" id="hunt-grid"></div>
           <p style="text-align:center; margin-top:1rem"><button class="btn btn-sm btn-white" id="hunt-quit" data-i18n="btn.stop">Stop</button></p>
         </div>
       </section>
 
       <!-- ================= PRIZE BOX ================= -->
-      <section class="sticker reveal" id="prizes" style="margin-top:3rem; background:#FFF3C4; --d:.2s">
+      <section class="sticker reveal" id="prizes" style="margin-top:3rem; background:#E3F8F6; --d:.2s">
         <span class="tag" data-stars>⭐ 0</span>
         <h2 data-i18n="prizes.h2">🎁 Prize box</h2>
         <p class="lead" data-i18n="prizes.lead">Every correct answer = a star ⭐. Every 10 stars = a new sticker!</p>
@@ -241,7 +266,7 @@
         <div class="prize-box" data-prize-box></div>
 
         <h3 style="margin-top:2.4rem" data-i18n="prizes.trophies.h3">🏆 Trophies</h3>
-        <p class="lead" style="font-size:1.05rem" data-i18n="prizes.trophies.lead">Trophies are earned by doing something special. The 🔥 ones only open once you really know the hard tables (6, 7, 8 and 9): at least 15 answers on that table with 9 out of 10 correct.</p>
+        <p class="lead" style="font-size:1.05rem" data-i18n="prizes.trophies.lead">Trophies are earned by doing something special. The 🔥 ones only open once you can really divide by 6, 7, 8 and 9: at least 15 answers with that number, with 9 out of 10 correct.</p>
         <div class="badge-box" data-badge-box></div>
       </section>
     </div>
@@ -262,9 +287,9 @@
 
   <footer class="footer">
     <div class="wrap footer-inner">
-      <div data-i18n-html="footer.made"><b>Fun with Multiplication!</b> — made with ❤️ for curious kids aged 6–12.</div>
-      <div class="nums">1 2 3 4 5 6 7 8 9 10</div>
-      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="division/index.html" data-i18n="footer.sister">➗ Fun with Division</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
+      <div data-i18n-html="footer.made"><b>Fun with Division!</b> — made with ❤️ for curious kids aged 6–12.</div>
+      <div class="nums">÷ 1 2 3 4 5 6 7 8 9 10</div>
+      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="../index.html" data-i18n="footer.sister">✖️ Fun with Multiplication</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
     </div>
   </footer>
 

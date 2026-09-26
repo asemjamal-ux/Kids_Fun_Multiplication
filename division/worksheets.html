@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title.worksheets">Printable Worksheets — Fun with Multiplication!</title>
-  <meta name="description" content="Generate and print multiplication worksheets for tables 1 to 10, with answer keys, blank charts and skip-counting sheets.">
+  <title data-i18n="title.worksheets">Printable Worksheets — Fun with Division!</title>
+  <meta name="description" content="Generate and print division worksheets for dividing by 1 to 10: practice problems, bus-stop layout, missing numbers and fact families, with answer keys.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF6B6B'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E×%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ECDC4'/%3E%3Ctext x='50' y='74' font-size='70' text-anchor='middle' fill='%232B2140' font-family='sans-serif' font-weight='bold'%3E÷%3C/text%3E%3C/svg%3E">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#FF6B6B">
+  <meta name="theme-color" content="#4ECDC4">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,14 +23,14 @@
 
   <header class="nav no-print">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-badge">×</span> <span data-i18n="brand">Fun with Multiplication!</span></a>
+      <a class="brand" href="index.html"><span class="brand-badge">÷</span> <span data-i18n="brand">Fun with Division!</span></a>
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav.home">🏠 Home</a></li>
         <li><a href="games.html" data-i18n="nav.games">🎮 Games</a></li>
         <li><a href="videos.html" data-i18n="nav.videos">📺 Videos</a></li>
         <li><a href="worksheets.html" data-i18n="nav.worksheets">📝 Worksheets</a></li>
         <li><a href="parents.html" data-i18n="nav.parents">👩‍🏫 Parents &amp; Teachers</a></li>
-        <li><a class="sister-link" data-sister href="division/index.html" data-i18n="nav.sister">➗ Division</a></li>
+        <li><a class="sister-link" data-sister href="../index.html" data-i18n="nav.sister">✖️ Multiplication</a></li>
       </ul>
       <button class="lang-toggle" type="button" data-lang-toggle title="العربية / English">عربي</button>
       <button class="nav-toggle" aria-label="Open menu" data-i18n-label="nav.menu" aria-expanded="false">☰</button>
@@ -53,22 +53,21 @@
           <div class="field">
             <span class="field-label" data-i18n="ws.type">Sheet type</span>
             <select id="ws-type">
-              <option value="problems" data-i18n="ws.type.problems">Practice problems</option>
+              <option value="problems" data-i18n="ws.type.problems">Division problems</option>
               <option value="missing" data-i18n="ws.type.missing">Missing number puzzles</option>
-              <option value="chart-blank" data-i18n="ws.type.chartBlank">Blank 10 × 10 chart (fill it in)</option>
-              <option value="chart-full" data-i18n="ws.type.chartFull">Full 10 × 10 chart (reference)</option>
-              <option value="skip" data-i18n="ws.type.skip">Skip-counting sheet</option>
+              <option value="family" data-i18n="ws.type.family">Fact families</option>
+              <option value="chart" data-i18n="ws.type.chart">Division finder chart (reference)</option>
             </select>
           </div>
 
           <div class="field" id="f-tables">
-            <span class="field-label" data-i18n="ws.tablesLabel">Tables to include</span>
+            <span class="field-label" data-i18n="ws.tablesLabel">Divide by</span>
             <div class="chip-row" id="ws-tables"></div>
             <div style="display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.4rem">
               <button type="button" class="btn btn-sm btn-white" data-ws-preset="all" data-i18n="ws.all">All</button>
               <button type="button" class="btn btn-sm btn-white" data-ws-preset="none" data-i18n="ws.none">None</button>
-              <button type="button" class="btn btn-sm btn-white" data-ws-preset="easy">1, 2, 5, 10</button>
-              <button type="button" class="btn btn-sm btn-white" data-ws-preset="hard">6–9</button>
+              <button type="button" class="btn btn-sm btn-white" data-ws-preset="easy">÷1, ÷2, ÷5, ÷10</button>
+              <button type="button" class="btn btn-sm btn-white" data-ws-preset="hard">÷6 – ÷9</button>
             </div>
           </div>
 
@@ -85,8 +84,8 @@
           <div class="field" id="f-layout">
             <span class="field-label" data-i18n="ws.layout">Layout</span>
             <div class="chip-row">
-              <button type="button" class="chip" id="ws-layout-h" aria-pressed="true" data-i18n="ws.layoutH">Across ( 3 × 4 = __ )</button>
-              <button type="button" class="chip" id="ws-layout-v" aria-pressed="false" data-i18n="ws.layoutV">Stacked</button>
+              <button type="button" class="chip" id="ws-layout-h" aria-pressed="true" data-i18n="ws.layoutH">Across ( 42 ÷ 6 = __ )</button>
+              <button type="button" class="chip" id="ws-layout-v" aria-pressed="false" data-i18n="ws.layoutV">Bus stop</button>
             </div>
           </div>
 
@@ -112,9 +111,9 @@
 
   <footer class="footer no-print">
     <div class="wrap footer-inner">
-      <div data-i18n-html="footer.made"><b>Fun with Multiplication!</b> — made with ❤️ for curious kids aged 6–12.</div>
-      <div class="nums">1 2 3 4 5 6 7 8 9 10</div>
-      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="division/index.html" data-i18n="footer.sister">➗ Fun with Division</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
+      <div data-i18n-html="footer.made"><b>Fun with Division!</b> — made with ❤️ for curious kids aged 6–12.</div>
+      <div class="nums">÷ 1 2 3 4 5 6 7 8 9 10</div>
+      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="../index.html" data-i18n="footer.sister">✖️ Fun with Multiplication</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
     </div>
   </footer>
 

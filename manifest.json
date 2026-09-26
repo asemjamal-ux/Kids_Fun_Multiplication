@@ -1,7 +1,7 @@
 {
-  "name": "Fun with Multiplication!",
-  "short_name": "Multiplication",
-  "description": "Learn your times tables 1 to 10 with games, animated videos and printable worksheets.",
+  "name": "Fun with Math! Multiplication & Division",
+  "short_name": "Fun with Math",
+  "description": "Learn times tables and division facts 1 to 10 with games, animated videos and printable worksheets.",
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
@@ -12,5 +12,19 @@
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
     { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Multiplication",
+      "short_name": "Multiplication",
+      "url": "/index.html",
+      "description": "Times tables games, videos and worksheets"
+    },
+    {
+      "name": "Division",
+      "short_name": "Division",
+      "url": "/division/index.html",
+      "description": "Division games, videos and worksheets"
+    }
   ]
 }

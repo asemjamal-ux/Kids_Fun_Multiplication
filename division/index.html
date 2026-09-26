@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title.home">Fun with Multiplication! — Learn your times tables 1 to 10</title>
-  <meta name="description" content="A colourful, playful website for kids aged 6–12 to learn multiplication tables 1 to 10 with games, animated videos and printable worksheets.">
+  <title data-i18n="title.home">Fun with Division! — Learn to divide by 1 to 10</title>
+  <meta name="description" content="A colourful, playful website for kids aged 6–12 to learn division facts (dividing by 1 to 10) with sharing games, animated videos and printable worksheets.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF6B6B'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E×%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234ECDC4'/%3E%3Ctext x='50' y='74' font-size='70' text-anchor='middle' fill='%232B2140' font-family='sans-serif' font-weight='bold'%3E÷%3C/text%3E%3C/svg%3E">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#FF6B6B">
+  <meta name="theme-color" content="#4ECDC4">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,14 +23,14 @@
 
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-badge">×</span> <span data-i18n="brand">Fun with Multiplication!</span></a>
+      <a class="brand" href="index.html"><span class="brand-badge">÷</span> <span data-i18n="brand">Fun with Division!</span></a>
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav.home">🏠 Home</a></li>
         <li><a href="games.html" data-i18n="nav.games">🎮 Games</a></li>
         <li><a href="videos.html" data-i18n="nav.videos">📺 Videos</a></li>
         <li><a href="worksheets.html" data-i18n="nav.worksheets">📝 Worksheets</a></li>
         <li><a href="parents.html" data-i18n="nav.parents">👩‍🏫 Parents &amp; Teachers</a></li>
-        <li><a class="sister-link" data-sister href="division/index.html" data-i18n="nav.sister">➗ Division</a></li>
+        <li><a class="sister-link" data-sister href="../index.html" data-i18n="nav.sister">✖️ Multiplication</a></li>
       </ul>
       <button class="lang-toggle" type="button" data-lang-toggle title="العربية / English">عربي</button>
       <button class="nav-toggle" aria-label="Open menu" data-i18n-label="nav.menu" aria-expanded="false">☰</button>
@@ -42,9 +42,9 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow reveal" style="--d:.05s" data-i18n="hero.eyebrow" id="hero-eyebrow">Times tables 1 → 10</span>
-          <h1 class="reveal" style="--d:.15s" data-i18n-html="hero.h1">Fun with <span style="white-space:nowrap"><span class="wobble">Multi</span><span class="swing">plication!</span></span></h1>
-          <p class="lead reveal" style="--d:.3s" data-i18n-html="hero.lead">Play games, watch animated stories, and print worksheets — until 7 × 8 pops into your head faster than you can say <em>fifty-six</em>.</p>
+          <span class="eyebrow reveal" style="--d:.05s" data-i18n="hero.eyebrow" id="hero-eyebrow">Dividing by 1 → 10</span>
+          <h1 class="reveal" style="--d:.15s" data-i18n-html="hero.h1">Fun with <span style="white-space:nowrap"><span class="wobble">Divi</span><span class="swing">sion!</span></span></h1>
+          <p class="lead reveal" style="--d:.3s" data-i18n-html="hero.lead">Share treats fairly, play games, watch animated stories and print worksheets — until you know 56 ÷ 7 = 8 before you've finished reading it.</p>
           <div class="hero-actions reveal" style="--d:.45s">
             <a class="btn btn-coral btn-lg" href="games.html" data-i18n="hero.play">🎮 Play a Game</a>
             <a class="btn btn-sky btn-lg" href="videos.html" data-i18n="hero.watch">📺 Watch a Video</a>
@@ -53,35 +53,35 @@
         </div>
         <div class="hero-art reveal" style="--d:.2s">
           <div data-mascot="floaty-mascot"></div>
-          <span class="float-chip" style="top:6%; left:8%; background:var(--sun); --r:-8deg; animation-delay:0s">3</span>
-          <span class="float-chip" style="top:14%; right:6%; background:var(--coral); color:#fff; --r:6deg; animation-delay:.6s">×</span>
-          <span class="float-chip" style="bottom:22%; left:2%; background:var(--sky); --r:4deg; animation-delay:1.2s">7</span>
-          <span class="float-chip" style="bottom:8%; right:10%; background:var(--lime); --r:-5deg; animation-delay:1.8s">= 21</span>
+          <span class="float-chip" style="top:6%; left:8%; background:var(--sun); --r:-8deg; animation-delay:0s">12</span>
+          <span class="float-chip" style="top:14%; right:6%; background:var(--sky); --r:6deg; animation-delay:.6s">÷</span>
+          <span class="float-chip" style="bottom:22%; left:2%; background:var(--coral); color:#fff; --r:4deg; animation-delay:1.2s">3</span>
+          <span class="float-chip" style="bottom:8%; right:10%; background:var(--lime); --r:-5deg; animation-delay:1.8s">= 4</span>
         </div>
       </div>
     </section>
 
-    <!-- ================= PICK A TABLE ================= -->
+    <!-- ================= PICK A NUMBER ================= -->
     <section class="section" id="tables">
       <div class="wrap">
         <div class="section-head">
           <div>
             <span class="eyebrow" data-i18n="pick.eyebrow">Start here</span>
-            <h2 data-i18n="pick.h2">Pick a times table</h2>
+            <h2 data-i18n="pick.h2">Pick a number to divide by</h2>
           </div>
           <p class="lead" style="margin:0" data-i18n="pick.lead">Tap a number to watch its video, then race it in a game!</p>
         </div>
         <div class="table-picker">
-          <a class="table-chip" href="videos.html#table-1">1<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-2">2<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-3">3<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-4">4<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-5">5<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-6">6<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-7">7<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-8">8<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-9">9<small data-i18n="pick.chip">× table</small></a>
-          <a class="table-chip" href="videos.html#table-10">10<small data-i18n="pick.chip">× table</small></a>
+          <a class="table-chip" href="videos.html#table-1">÷1<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-2">÷2<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-3">÷3<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-4">÷4<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-5">÷5<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-6">÷6<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-7">÷7<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-8">÷8<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-9">÷9<small data-i18n="pick.chip">divide by</small></a>
+          <a class="table-chip" href="videos.html#table-10">÷10<small data-i18n="pick.chip">divide by</small></a>
         </div>
       </div>
     </section>
@@ -98,21 +98,21 @@
         <div class="grid-3">
           <a class="sticker sticker-link tilt-l" href="games.html">
             <span class="tag" data-i18n="ways.popular">Most popular</span>
-            <div class="card-icon" style="background:var(--coral)">🚀</div>
-            <h3 data-i18n="ways.games.h3">Multiplication Games</h3>
-            <p data-i18n-html="ways.games.p">Race the clock in <b>Times Table Race</b>, shout <b>Bingo!</b>, or crack tricky <b>Math Puzzles</b>. Earn stars and beat your best score.</p>
+            <div class="card-icon" style="background:var(--coral)">🍪</div>
+            <h3 data-i18n="ways.games.h3">Division Games</h3>
+            <p data-i18n-html="ways.games.p">Deal out treats in <b>Fair Share</b>, race the clock in the <b>Division Race</b>, shout <b>Bingo!</b> and crack <b>Puzzles</b>. Seven games, with stars and prizes!</p>
             <span class="btn btn-sm btn-coral" data-i18n="ways.games.btn">Let's play →</span>
           </a>
           <a class="sticker sticker-link" href="videos.html">
             <div class="card-icon" style="background:var(--sky)">🎬</div>
             <h3 data-i18n="ways.videos.h3">Animated Videos</h3>
-            <p data-i18n="ways.videos.p">Ten mini-episodes — one for every table. Watch groups of apples, frogs and rockets build each answer, with a read-aloud narrator.</p>
+            <p data-i18n="ways.videos.p">Ten mini-episodes — one for every number. Watch apples, cookies and pizza get shared into equal groups, with a read-aloud narrator.</p>
             <span class="btn btn-sm btn-sky" data-i18n="ways.videos.btn">Watch now →</span>
           </a>
           <a class="sticker sticker-link tilt-r" href="worksheets.html">
             <div class="card-icon" style="background:var(--lime)">🖨️</div>
             <h3 data-i18n="ways.ws.h3">Printable Worksheets</h3>
-            <p data-i18n="ways.ws.p">Make your own practice sheets in seconds: pick tables, pick how many, hit print. Answer keys included for grown-ups.</p>
+            <p data-i18n="ways.ws.p">Division problems, missing numbers, fact families and a finder chart — with answer keys for grown-ups.</p>
             <span class="btn btn-sm btn-lime" data-i18n="ways.ws.btn">Make a sheet →</span>
           </a>
         </div>
@@ -125,7 +125,7 @@
         <div class="sticker" style="max-width:720px; margin:0 auto; background:#fff">
           <span class="tag" style="background:var(--sun); color:var(--ink)" data-i18n="qc.tag">⚡ Quick challenge</span>
           <h2 style="text-align:center" data-i18n="qc.h2">Can you get 5 in a row?</h2>
-          <div class="question-big" id="qc-question">3 × 4 = ?</div>
+          <div class="question-big" id="qc-question">12 ÷ 3 = ?</div>
           <div class="options" id="qc-options"></div>
           <div class="stat-row">
             <div class="stat"><b id="qc-streak">0</b><span data-i18n="stat.streak">streak</span></div>
@@ -142,7 +142,7 @@
         <div class="grid-3">
           <div class="sticker" style="background:#FFF3C4">
             <h3 data-i18n="how.watch.h3">1️⃣ Watch</h3>
-            <p data-i18n-html="how.watch.p">Start with an episode. See <em>why</em> 4 × 3 is 12 — three rows of four cars — instead of just memorising it.</p>
+            <p data-i18n-html="how.watch.p">Start with an episode. Watch 12 cookies being dealt to 3 friends until each has 4 — then you know <em>why</em> 12 ÷ 3 = 4.</p>
           </div>
           <div class="sticker" style="background:#E3F8F6">
             <h3 data-i18n="how.play.h3">2️⃣ Play</h3>
@@ -160,12 +160,12 @@
     <section class="section" style="padding-top:.5rem">
       <div class="wrap">
         <div class="banner sister">
-          <div style="font-size:3.5rem">➗</div>
+          <div style="font-size:3.5rem">✖️</div>
           <div>
-            <h2 style="margin-bottom:.2em" data-i18n="sister.h2">Ready for the next adventure?</h2>
-            <p style="margin:0" data-i18n="sister.p">Once you know your times tables, you already know division — it's multiplication backwards! Meet Divi on our sister site.</p>
+            <h2 style="margin-bottom:.2em" data-i18n="sister.h2">Still learning your times tables?</h2>
+            <p style="margin:0" data-i18n="sister.p">Division is multiplication backwards — the better you know your tables, the easier dividing gets. Visit our sister site!</p>
           </div>
-          <a class="btn btn-white" data-sister href="division/index.html" data-i18n="sister.btn">➗ Fun with Division →</a>
+          <a class="btn btn-white" data-sister href="../index.html" data-i18n="sister.btn">✖️ Fun with Multiplication →</a>
         </div>
       </div>
     </section>
@@ -187,9 +187,9 @@
 
   <footer class="footer">
     <div class="wrap footer-inner">
-      <div data-i18n-html="footer.made"><b>Fun with Multiplication!</b> — made with ❤️ for curious kids aged 6–12.</div>
-      <div class="nums">1 2 3 4 5 6 7 8 9 10</div>
-      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="division/index.html" data-i18n="footer.sister">➗ Fun with Division</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
+      <div data-i18n-html="footer.made"><b>Fun with Division!</b> — made with ❤️ for curious kids aged 6–12.</div>
+      <div class="nums">÷ 1 2 3 4 5 6 7 8 9 10</div>
+      <div style="display:flex; gap:1.2rem; flex-wrap:wrap"><a data-sister href="../index.html" data-i18n="footer.sister">✖️ Fun with Multiplication</a><a href="parents.html" data-i18n="footer.grownups">For grown-ups</a></div>
     </div>
   </footer>
 
@@ -197,7 +197,7 @@
   <script>
     /* Quick challenge widget */
     (function () {
-      let a, b, streak = 0, best = MM.load('qc_best', 0), locked = false;
+      let f, streak = 0, best = MM.load('qc_best', 0), locked = false;
       const q = document.getElementById('qc-question'), opts = document.getElementById('qc-options');
       const sStreak = document.getElementById('qc-streak'), sBest = document.getElementById('qc-best'), msg = document.getElementById('qc-msg');
       sBest.textContent = best;
@@ -206,10 +206,10 @@
       const cheers = MM.t('qc.cheers');
       function next() {
         locked = false;
-        a = 1 + MM.rand(10); b = 1 + MM.rand(10);
-        q.textContent = `${a} × ${b} = ?`;
+        f = MM.divFact([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        q.textContent = `${f.p} ÷ ${f.n} = ?`;
         opts.innerHTML = '';
-        MM.distractors(a, b).forEach(v => {
+        MM.divDistractors(f.n, f.q).forEach(v => {
           const btn = document.createElement('button');
           btn.className = 'option'; btn.textContent = v;
           btn.addEventListener('click', () => answer(btn, v));
@@ -218,8 +218,8 @@
       }
       function answer(btn, v) {
         if (locked) return; locked = true;
-        const right = v === a * b;
-        MM.recordFact(a, b, right);
+        const right = v === f.q;
+        MM.recordFact(f.n, f.q, right);
         if (right) {
           btn.classList.add('correct'); MM.sound.good(); streak++;
           msg.textContent = MM.pick(cheers);
@@ -227,8 +227,8 @@
           if (streak === 5) { msg.textContent = MM.t('qc.five'); MM.confetti(80); MM.sound.win(); }
         } else {
           btn.classList.add('wrong'); MM.sound.bad(); streak = 0;
-          msg.textContent = MM.t('qc.wrong', { a, b, c: a * b });
-          [...opts.children].forEach(o => { if (+o.textContent === a * b) o.classList.add('correct'); });
+          msg.textContent = MM.t('qc.wrong', { p: f.p, n: f.n, q: f.q });
+          [...opts.children].forEach(o => { if (+o.textContent === f.q) o.classList.add('correct'); });
         }
         sStreak.textContent = streak;
         setTimeout(next, right ? 700 : 1600);
