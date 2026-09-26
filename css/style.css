@@ -566,3 +566,22 @@ details.faq summary { font-family: var(--display); font-weight: 600; font-size: 
   background: #E4572E; color: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: .05rem .55rem; box-shadow: 2px 2px 0 var(--ink);
 }
 .prize-card.badge .prize-rays { background: repeating-conic-gradient(from 0deg, #FFD0C2 0deg 12deg, #FFF0EA 12deg 24deg); }
+
+/* ---------- Phone-width fixes ---------- */
+@media (max-width: 960px) { .ws-layout { grid-template-columns: minmax(0, 1fr); } .sheet { overflow-x: auto; } }
+@media (max-width: 520px) {
+  .nav-inner { gap: .45rem; padding-inline: .8rem; }
+  .brand { font-size: 1.02rem; gap: .45rem; }
+  .brand-badge { width: 36px; height: 36px; font-size: 1.2rem; }
+  .star-chip, .lang-toggle, .nav-toggle { height: 40px; }
+  .nav-toggle { width: 40px; font-size: 1.2rem; }
+  .lang-toggle { padding: 0 .6rem; font-size: .9rem; }
+  .sheet { padding: 1.2rem 1rem; }
+  .prob-grid.h { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Sister-site link (nav + banner) ---------- */
+.nav-links a.sister-link { background: var(--sky); color: var(--ink); border-color: var(--ink); box-shadow: var(--shadow-sm); }
+.nav-links a.sister-link:hover { background: var(--sky); }
+.banner.sister { background: var(--sky); color: var(--ink); }
+.banner.sister h2 { color: var(--ink); }

@@ -182,7 +182,9 @@
     'sound.on': '🔊 الصوت مفعّل', 'sound.off': '🔇 الصوت مغلق',
     'brand': 'مرح مع جدول الضرب!',
     'nav.home': '🏠 الرئيسية', 'nav.games': '🎮 الألعاب', 'nav.videos': '📺 الفيديوهات', 'nav.worksheets': '📝 أوراق العمل', 'nav.parents': '👩‍🏫 الأهل والمعلمون',
-    'nav.menu': 'فتح القائمة',
+    'nav.menu': 'فتح القائمة', 'nav.sister': '➗ القسمة', 'footer.sister': '➗ مرح مع القسمة',
+    'sister.h2': 'مستعد للمغامرة التالية؟', 'sister.p': 'عندما تعرف جداول الضرب، فأنت تعرف القسمة أيضاً — إنها الضرب بالعكس! تعرّف على ديفي في موقعنا الشقيق.', 'sister.btn': '➗ مرح مع القسمة ←',
+    'p.q6': 'ماذا بعد جداول الضرب؟', 'p.a6': 'القسمة! موقعنا الشقيق <a data-sister href="https://fundivision.netlify.app/" style="text-decoration:underline">مرح مع القسمة</a> يعمل بالطريقة نفسها — ألعاب وفيديوهات وأوراق عمل وجوائز — وكل حقيقة قسمة هي حقيقة ضرب بالعكس.',
     'footer.made': 'مرح مع جدول الضرب! — صُنع بحب ❤️ للأطفال الفضوليين من 6 إلى 12 سنة.',
     'footer.grownups': 'للكبار', 'footer.back': 'العودة إلى المرح',
 
@@ -343,7 +345,12 @@
   };
 
   /* ---------- API ---------- */
-  MM.lang = load('lang', 'en') === 'ar' ? 'ar' : 'en';
+  let lang = load('lang', 'en');
+  try {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (q === 'ar' || q === 'en') { lang = q; save('lang', q); }
+  } catch (e) { /* old browser: ignore */ }
+  MM.lang = lang === 'ar' ? 'ar' : 'en';
   MM.rtl = MM.lang === 'ar';
   MM.sep = MM.rtl ? '، ' : ', ';   // list separator for generated text
   MM.t = function (key, vars) {
@@ -352,7 +359,11 @@
     if (vars) Object.keys(vars).forEach(k => { s = s.split('{' + k + '}').join(vars[k]); });
     return s;
   };
-  MM.setLang = function (lang) { save('lang', lang); location.reload(); };
+  MM.setLang = function (l) {
+    save('lang', l);
+    // Drop a ?lang= parameter so it doesn't override the new choice on reload
+    location.href = location.pathname + location.hash;
+  };
 
   // Set direction before first paint
   document.documentElement.lang = MM.lang;

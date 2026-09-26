@@ -3,6 +3,7 @@
   'use strict';
 
   window.MM = window.MM || {};
+  MM.SISTER_URL = 'https://fundivision.netlify.app/';
 
   /* ---------- Storage (safe wrappers) ---------- */
   MM.load = function (key, fallback) {
@@ -326,6 +327,8 @@
       document.dispatchEvent(new CustomEvent('mm:name'));
     }));
     MM.paintStars();
+    // Links to the sister site keep the chosen language
+    document.querySelectorAll('[data-sister]').forEach(a => { a.href = MM.SISTER_URL + (MM.rtl ? '?lang=ar' : ''); });
     // Sound toggle buttons
     document.querySelectorAll('[data-sound-toggle]').forEach(btn => {
       const paint = () => btn.textContent = MM.sound.enabled ? MM.t('sound.on') : MM.t('sound.off');
