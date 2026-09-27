@@ -26,6 +26,9 @@
     if (correct) { MM.addStar(); MM.checkBadges(); }
   };
 
+  /* Escape text before putting it inside HTML (the player's name is typed by the user). */
+  MM.esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
   /* ---------- Player name ---------- */
   MM.name = String(MM.load('name', '') || '').slice(0, 24);
   MM.setName = function (n) {
@@ -66,8 +69,8 @@
     const emoji = badge ? what.emoji : MM.STICKERS[what % MM.STICKERS.length];
     const name = badge ? what.name : MM.stickerName(what);
     const title = badge
-      ? (MM.name ? MM.t('badge.title', { name: MM.name }) : MM.t('badge.titleAnon'))
-      : (MM.name ? MM.t('prize.title', { name: MM.name }) : MM.t('prize.titleAnon'));
+      ? (MM.name ? MM.t('badge.title', { name: MM.esc(MM.name) }) : MM.t('badge.titleAnon'))
+      : (MM.name ? MM.t('prize.title', { name: MM.esc(MM.name) }) : MM.t('prize.titleAnon'));
     const body = badge ? MM.t('badge.body', { badge: '<b>' + name + '</b>' }) : MM.t('prize.body', { sticker: '<b>' + name + '</b>' });
     const back = document.createElement('div');
     back.className = 'prize-back';

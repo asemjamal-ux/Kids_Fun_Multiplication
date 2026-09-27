@@ -1,4 +1,4 @@
-const CACHE_NAME = "fun-with-math-v2";
+const CACHE_NAME = "fun-with-math-v3";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -13,6 +13,8 @@ const CORE_ASSETS = [
   "/js/games-more.js",
   "/js/videos.js",
   "/js/worksheets.js",
+  "/js/home.js",
+  "/js/parents.js",
   "/division/index.html",
   "/division/games.html",
   "/division/videos.html",
@@ -25,6 +27,8 @@ const CORE_ASSETS = [
   "/division/js/games-more.js",
   "/division/js/videos.js",
   "/division/js/worksheets.js",
+  "/division/js/home.js",
+  "/division/js/parents.js",
   "/icons/icon-192.png",
   "/icons/icon-512.png"
 ];

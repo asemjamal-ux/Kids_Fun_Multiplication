@@ -32,6 +32,7 @@
   ['ws-name', 'ws-key'].forEach(id => $(id).addEventListener('input', render));
   $('ws-generate').addEventListener('click', generate);
   $('ws-print').addEventListener('click', () => window.print());
+  $('ws-form').addEventListener('submit', (e) => e.preventDefault());   // the form never submits anywhere
 
   function toggleFields() {
     const t = $('ws-type').value;
